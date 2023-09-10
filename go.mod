@@ -15,9 +15,9 @@ require (
 	github.com/hashicorp/go-retryablehttp v0.7.2
 	github.com/hibiken/asynq v0.24.1
 	github.com/jinzhu/gorm v1.9.16
-	github.com/newrelic/go-agent/v3 v3.21.1
+	github.com/newrelic/go-agent/v3 v3.24.0
 	github.com/newrelic/go-agent/v3/integrations/nrgorilla v1.1.1
-	github.com/newrelic/go-agent/v3/integrations/nrgrpc v1.3.2
+	github.com/newrelic/go-agent/v3/integrations/nrgrpc v1.4.1
 	github.com/newrelic/go-agent/v3/integrations/nrmongo v1.0.3
 	github.com/newrelic/go-agent/v3/integrations/nrzap v1.0.1
 	github.com/patrickmn/go-cache v2.1.0+incompatible
@@ -32,6 +32,7 @@ require (
 	go.uber.org/zap v1.24.0
 	google.golang.org/grpc v1.55.0
 	gopkg.in/square/go-jose.v2 v2.6.0
+	gorm.io/driver/clickhouse v0.5.1
 	gorm.io/driver/postgres v1.5.0
 	gorm.io/driver/sqlite v1.5.0
 	gorm.io/gorm v1.25.1
@@ -73,11 +74,11 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/juju/errgo v0.0.0-20140925100237-08cceb5d0b53 // indirect
 	github.com/klauspost/compress v1.16.5 // indirect
-	github.com/kr/pretty v0.3.1 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mattn/go-sqlite3 v1.14.16 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
+	github.com/newrelic/csec-go-agent v0.4.0 // indirect
 	github.com/paulmach/orb v0.9.0 // indirect
 	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.7 // indirect
@@ -103,6 +104,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.15.1 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
+	golang.org/x/arch v0.5.0 // indirect
 	golang.org/x/crypto v0.9.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/sync v0.2.0 // indirect
@@ -113,5 +115,4 @@ require (
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/driver/clickhouse v0.5.1 // indirect
 )
