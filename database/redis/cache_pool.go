@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"time"
 
-	corelib "github.com/SimifiniiCTO/simfiny-core-lib"
+	corelib "github.com/SolomonAIEngineering/backend-core-library"
 	"github.com/gomodule/redigo/redis"
 	"go.uber.org/zap"
 )

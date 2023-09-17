@@ -1,10 +1,10 @@
-package postgres // import "github.com/SimifiniiCTO/simfiny-core-lib/database/postgres"
+package postgres // import "github.com/SolomonAIEngineering/backend-core-library/database/postgres"
 
 import (
 	"fmt"
 	"time"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"go.uber.org/zap"
 )
 

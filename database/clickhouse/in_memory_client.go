@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )

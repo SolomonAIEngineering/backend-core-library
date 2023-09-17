@@ -1,4 +1,4 @@
-package consumer // import "github.com/SimifiniiCTO/simfiny-core-lib/message_queue/consumer"
+package consumer // import "github.com/SolomonAIEngineering/backend-core-library/message_queue/consumer"
 
 // `createFullBufferedChannel` creates a buffered channel of boolean values
 // with a specified capacity. It initializes the channel with `capacity` number of `true` values

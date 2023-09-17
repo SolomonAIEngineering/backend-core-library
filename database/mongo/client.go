@@ -1,11 +1,11 @@
-package mongo // import "github.com/SimifiniiCTO/simfiny-core-lib/database/mongo"
+package mongo // import "github.com/SolomonAIEngineering/backend-core-library/database/mongo"
 
 import (
 	"context"
 	"fmt"
 	"time"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"github.com/newrelic/go-agent/v3/integrations/nrmongo"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

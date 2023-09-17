@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package corelib // import "github.com/SimifiniiCTO/simfiny-core-lib"
+package corelib // import "github.com/SolomonAIEngineering/backend-core-library"
 
 // ErrorHandler handles irremediable events.
 type ErrorHandler interface {

@@ -1,10 +1,10 @@
-package mongo // import "github.com/SimifiniiCTO/simfiny-core-lib/database/mongo"
+package mongo // import "github.com/SolomonAIEngineering/backend-core-library/database/mongo"
 
 import (
 	"fmt"
 	"time"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.uber.org/zap"
 )

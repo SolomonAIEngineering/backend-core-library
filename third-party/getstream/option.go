@@ -1,7 +1,7 @@
 package getstream
 
 import (
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"go.uber.org/zap"
 )
 

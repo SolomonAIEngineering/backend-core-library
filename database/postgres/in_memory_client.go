@@ -1,4 +1,4 @@
-package postgres // import "github.com/SimifiniiCTO/simfiny-core-lib/database/postgres"
+package postgres // import "github.com/SolomonAIEngineering/backend-core-library/database/postgres"
 
 import (
 	"context"
@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )

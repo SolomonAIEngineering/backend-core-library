@@ -1,4 +1,4 @@
-package instrumentation // import "github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+package instrumentation // import "github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 
 import (
 	"context"

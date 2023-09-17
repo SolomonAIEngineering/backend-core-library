@@ -1,6 +1,6 @@
 package algoliasearch
 
-import "github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+import "github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 
 type (
 	// Config is the configuration for the algolia search handler

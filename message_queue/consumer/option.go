@@ -1,62 +1,85 @@
-package consumer // import "github.com/SimifiniiCTO/simfiny-core-lib/message_queue/consumer"
+package consumer // import "github.com/SolomonAIEngineering/backend-core-library/message_queue/consumer"
 
 import (
 	"fmt"
 	"time"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
-	"github.com/SimifiniiCTO/simfiny-core-lib/message_queue/client"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
+	"github.com/aws/aws-sdk-go/service/sqs"
 	"go.uber.org/zap"
 )
 
 type Option func(*ConsumerClient)
 
-// WithMessageProcessTimeout sets the message process timeout for the consumer
-func WithMessageProcessTimeout(messageProcessTimeout time.Duration) Option {
-	return func(c *ConsumerClient) {
-		c.MessageProcessTimeout = messageProcessTimeout
-	}
-}
-
-// WithQueuePollingDuration sets the queue polling duration for the consumer
-func WithQueuePollingDuration(queuePollingDuration time.Duration) Option {
-	return func(c *ConsumerClient) {
-		c.QueuePollingDuration = queuePollingDuration
-	}
-}
-
-// WithConcurrencyFactor sets the concurrency factor for the consumer
-func WithConcurrencyFactor(concurrencyFactor int) Option {
-	return func(c *ConsumerClient) {
-		c.ConcurrencyFactor = concurrencyFactor
-	}
-}
-
-// WithLogger sets the logger for the consumer
 func WithLogger(logger *zap.Logger) Option {
-	return func(c *ConsumerClient) {
-		c.Logger = logger
+	return func(opt *ConsumerClient) {
+		opt.logger = logger
 	}
 }
 
-// WithNewRelicClient sets the new relic client for the consumer
-func WithInstrumentationClient(instrumentationClient *instrumentation.Client) Option {
-	return func(c *ConsumerClient) {
-		c.InstrumentationClient = instrumentationClient
+func WithInstrumentationClient(ic *instrumentation.Client) Option {
+	return func(opt *ConsumerClient) {
+		opt.instrumentationClient = ic
 	}
 }
 
-// WithQueueUrl sets the queue url for the consumer
-func WithQueueUrl(queueUrl *string) Option {
-	return func(c *ConsumerClient) {
-		c.QueueUrl = queueUrl
+func WithSQSClient(client *sqs.SQS) Option {
+	return func(opt *ConsumerClient) {
+		opt.sqsClient = client
 	}
 }
 
-// WithAwsClient sets the aws client for the consumer
-func WithAwsClient(sqsClient *client.Client) Option {
-	return func(c *ConsumerClient) {
-		c.SqsClient = sqsClient
+func WithQueueURL(url *string) Option {
+	return func(opt *ConsumerClient) {
+		opt.queueUrl = url
+	}
+}
+
+func WithDLQURL(dlqURL *string) Option {
+	return func(opt *ConsumerClient) {
+		opt.deadletterQueueUrl = dlqURL
+	}
+}
+
+func WithConcurrencyFactor(factor int) Option {
+	return func(opt *ConsumerClient) {
+		opt.concurrencyFactor = factor
+	}
+}
+
+func WithQueuePollingDuration(duration time.Duration) Option {
+	return func(opt *ConsumerClient) {
+		opt.queuePollingDuration = duration
+	}
+}
+
+func WithMessageProcessTimeout(timeout time.Duration) Option {
+	return func(opt *ConsumerClient) {
+		opt.messageProcessTimeout = timeout
+	}
+}
+
+func WithMessageHandler(handler MessageProcessorFunc) Option {
+	return func(opt *ConsumerClient) {
+		opt.handler = handler
+	}
+}
+
+func WithBackoffDuration(duration time.Duration) Option {
+	return func(opt *ConsumerClient) {
+		opt.backoffDuration = duration
+	}
+}
+
+func WithBatchSize(size int64) Option {
+	return func(opt *ConsumerClient) {
+		opt.batchSize = size
+	}
+}
+
+func WithWaitTimeSecond(waitTime int64) Option {
+	return func(opt *ConsumerClient) {
+		opt.waitTimeSecond = waitTime
 	}
 }
 
@@ -66,13 +89,18 @@ func WithAwsClient(sqsClient *client.Client) Option {
 // `QueuePollingDuration` fields are not nil or zero. If any of these fields are nil or zero, it
 // returns an error indicating that the consumer client is invalid.
 func (c *ConsumerClient) Validate() error {
-	if c.SqsClient == nil ||
-		c.Logger == nil ||
-		c.InstrumentationClient == nil ||
-		c.QueueUrl == nil ||
-		c.ConcurrencyFactor == 0 ||
-		c.MessageProcessTimeout == 0 ||
-		c.QueuePollingDuration == 0 {
+	if c.logger == nil ||
+		c.instrumentationClient == nil ||
+		c.sqsClient == nil ||
+		c.queueUrl == nil ||
+		c.deadletterQueueUrl == nil ||
+		c.concurrencyFactor == 0 ||
+		c.queuePollingDuration == 0 ||
+		c.messageProcessTimeout == 0 ||
+		c.handler == nil ||
+		c.backoffDuration == 0 ||
+		c.batchSize == 0 ||
+		c.waitTimeSecond == 0 {
 		return fmt.Errorf("invalid consumer client. params: %v", c)
 	}
 
@@ -80,8 +108,29 @@ func (c *ConsumerClient) Validate() error {
 }
 
 // The New function creates a new ConsumerClient instance with optional configuration options.
+//
+// example:
+// consumer := NewConsumerClient(
+//
+//	WithLogger(yourLogger),
+//	WithInstrumentationClient(yourInstrumentationClient),
+//	WithSQSClient(yourSQSClient),
+//	WithQueueURL(&yourQueueURL),
+//	WithDLQURL(&yourDLQURL),
+//	WithConcurrencyFactor(yourConcurrencyFactor),
+//	WithQueuePollingDuration(yourPollingDuration),
+//	WithMessageProcessTimeout(yourMessageTimeout),
+//	WithMessageHandler(yourMessageHandlerFunc),
+//	WithBackoffDuration(yourBackoffDuration),
+//	WithBatchSize(yourBatchSize),
+//	WithWaitTimeSecond(yourWaitTimeSeconds),
+//
+// )
 func New(options ...Option) (*ConsumerClient, error) {
-	c := &ConsumerClient{}
+	c := &ConsumerClient{
+		stopCh: make(chan bool),
+	}
+
 	for _, option := range options {
 		option(c)
 	}

@@ -3,7 +3,7 @@ package redis
 import (
 	"time"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"github.com/gomodule/redigo/redis"
 	"go.uber.org/zap"
 )

@@ -1,4 +1,4 @@
-package authn // import "github.com/SimifiniiCTO/simfiny-core-lib/third-party/authn"
+package authn // import "github.com/SolomonAIEngineering/backend-core-library/third-party/authn"
 
 import "gopkg.in/square/go-jose.v2/jwt"
 
