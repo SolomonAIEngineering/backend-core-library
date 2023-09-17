@@ -52,6 +52,8 @@ type ConsumerClient struct {
 	backoffDuration time.Duration        // Duration before attempting to re-process a failed message.
 	batchSize       int64                // Number of messages to fetch in one call.
 	waitTimeSecond  int64                // Duration to wait between polling attempts.
+	pollCount       int
+	maxPolls        int // -1 for infinite, any other positive number for a max count
 }
 
 // Static check to ensure ConsumerClient implements the IConsumer interface.
@@ -117,8 +119,7 @@ func (c *ConsumerClient) poll() {
 			}
 
 			result, err := c.sqsClient.ReceiveMessageWithContext(ctx, &sqs.ReceiveMessageInput{
-				QueueUrl:            aws.String(*c.queueUrl),
-				MaxNumberOfMessages: aws.Int64(1),
+				QueueUrl: c.queueUrl,
 				AttributeNames: []*string{
 					aws.String(sqs.QueueAttributeNameAll),
 				},
@@ -140,6 +141,11 @@ func (c *ConsumerClient) poll() {
 					defer wg.Done()
 					c.process(ctx, msg, workerTokens)
 				}(message)
+			}
+
+			c.pollCount++
+			if c.maxPolls != -1 && c.pollCount > c.maxPolls {
+				return
 			}
 		}
 	}

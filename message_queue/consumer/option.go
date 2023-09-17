@@ -139,5 +139,8 @@ func New(options ...Option) (*ConsumerClient, error) {
 		return nil, err
 	}
 
+	// enable infinite polls if initialized through api
+	c.maxPolls = -1
+
 	return c, nil
 }
