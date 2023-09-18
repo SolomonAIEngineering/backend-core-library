@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"github.com/SimifiniiCTO/asynq"
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
-	"github.com/SimifiniiCTO/simfiny-core-lib/task-processor/taskhandler"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/task-processor/taskhandler"
 )
 
 // `type Worker struct` is defining a new struct type called `Worker`. This struct type has three

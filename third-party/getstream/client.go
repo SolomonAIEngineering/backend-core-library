@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/GetStream/stream-go2/v7"
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"go.uber.org/zap"
 )
 

@@ -18,4 +18,4 @@ the database package provide varios data storage implementations.
 
 The provided API is used to initialize and interact with a datastore of choice
 */
-package database // import "github.com/SimifiniiCTO/simfiny-core-lib/database"
+package database // import "github.com/SolomonAIEngineering/backend-core-library/database"

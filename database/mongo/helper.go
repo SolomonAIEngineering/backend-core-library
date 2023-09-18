@@ -1,4 +1,4 @@
-package mongo // import "github.com/SimifiniiCTO/simfiny-core-lib/database/mongo"
+package mongo // import "github.com/SolomonAIEngineering/backend-core-library/database/mongo"
 
 import (
 	"fmt"

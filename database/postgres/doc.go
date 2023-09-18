@@ -8,4 +8,4 @@
 Package database witholds database specific utilities for the core database libary
 This package mainly deals with interactions with the postgresql database.
 */
-package postgres // import "github.com/SimifiniiCTO/simfiny-core-lib/database/postgres"
+package postgres // import "github.com/SolomonAIEngineering/backend-core-library/database/postgres"

@@ -1,4 +1,4 @@
-package mongo // import "github.com/SimifiniiCTO/simfiny-core-lib/database/mongo"
+package mongo // import "github.com/SolomonAIEngineering/backend-core-library/database/mongo"
 
 import (
 	"context"
@@ -14,7 +14,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"go.uber.org/zap"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	mim "github.com/tryvium-travels/memongo"
 )
 

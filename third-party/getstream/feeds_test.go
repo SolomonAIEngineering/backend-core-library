@@ -10,7 +10,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/GetStream/stream-go2/v7"
