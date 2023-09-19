@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"github.com/giantswarm/retry-go"
 	"go.uber.org/zap"
 	"gorm.io/driver/clickhouse"

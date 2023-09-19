@@ -3,7 +3,8 @@ package algoliasearch
 import (
 	"testing"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
+
 	"github.com/stretchr/testify/assert"
 )
 

@@ -15,7 +15,7 @@
 //go:build tools
 // +build tools
 
-package tools // import "github.com/SimifiniiCTO/simfiny-core-lib/internal/tools"
+package tools // import "github.com/SolomonAIEngineering/backend-core-library/internal/tools"
 
 import (
 	_ "github.com/client9/misspell/cmd/misspell"

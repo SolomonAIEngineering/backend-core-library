@@ -4,7 +4,7 @@
 // not use this file except in compliance with the License. You may obtain
 // a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 
-package postgres // import "github.com/SimifiniiCTO/simfiny-core-lib/database/postgres"
+package postgres // import "github.com/SolomonAIEngineering/backend-core-library/database/postgres"
 
 import (
 	"context"

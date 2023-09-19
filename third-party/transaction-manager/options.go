@@ -6,10 +6,10 @@ import (
 	"go.temporal.io/sdk/client"
 	"go.uber.org/zap"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/database/mongo"
-	"github.com/SimifiniiCTO/simfiny-core-lib/database/postgres"
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
-	msq "github.com/SimifiniiCTO/simfiny-core-lib/message_queue/client"
+	"github.com/SolomonAIEngineering/backend-core-library/database/mongo"
+	"github.com/SolomonAIEngineering/backend-core-library/database/postgres"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
+	msq "github.com/SolomonAIEngineering/backend-core-library/message_queue/client"
 )
 
 // Option is a function that takes a TransactionManager pointer and sets some option on it

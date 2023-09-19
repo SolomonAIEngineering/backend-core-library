@@ -16,4 +16,4 @@
 Package instrumentation provides global access to instrumentation operations exposed by the core library
 The provided API is used to instrument any piece of code
 */
-package instrumentation // import "github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+package instrumentation // import "github.com/SolomonAIEngineering/backend-core-library/instrumentation"

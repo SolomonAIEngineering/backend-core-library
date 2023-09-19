@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/SimifiniiCTO/asynq"
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
-	"github.com/SimifiniiCTO/simfiny-core-lib/task-processor/taskhandler"
-	"github.com/SimifiniiCTO/simfiny-core-lib/task-processor/worker"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/task-processor/taskhandler"
+	"github.com/SolomonAIEngineering/backend-core-library/task-processor/worker"
 	"go.uber.org/zap"
 )
 

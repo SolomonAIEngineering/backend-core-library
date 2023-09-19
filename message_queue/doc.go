@@ -15,4 +15,4 @@
 /*
 Package message_queue provides global access to message queue subpackages (consumer and client)
 */
-package message_queue // import "github.com/SimifiniiCTO/simfiny-core-lib/message_queue"
+package message_queue // import "github.com/SolomonAIEngineering/backend-core-library/message_queue"

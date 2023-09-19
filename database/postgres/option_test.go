@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 )
 
 func TestWithQueryTimeout(t *testing.T) {

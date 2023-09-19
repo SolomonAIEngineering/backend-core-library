@@ -3,7 +3,7 @@ package algoliasearch // import "github.com/SimifiniiCTO/simfiny-core-lib/third-
 import (
 	"context"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"github.com/algolia/algoliasearch-client-go/v3/algolia/opt"
 	"github.com/algolia/algoliasearch-client-go/v3/algolia/search"
 )

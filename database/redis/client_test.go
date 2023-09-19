@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
+	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"github.com/alicebob/miniredis/v2"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/zap"
