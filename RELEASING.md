@@ -94,3 +94,24 @@ This ensures they build with the published release, not the local copy.
 
 Update [the documentation](./website_docs) for [the agent website](https://opentelemetry.io/docs/go/).
 Importantly, bump any package versions referenced to be the latest one you just released and ensure all code examples still compile and are accurate.
+
+## Releasing
+To perform a release, perform the following set of operations
+#### step 1: publish the release
+
+```bash
+# if releasing a patch version run -
+make release-patch-version
+
+# if releasing a minor version
+make release-minor-version
+
+# if releasing a major version
+make release-major-version
+```
+
+#### step 2: merge the release p.r.
+A branch with of the form release-xxx will be published in the repository. 
+Create a pull request from this with target branch main. 
+Wait until the ci/cd pipeline executes to completion and then merge the release branch into main
+
