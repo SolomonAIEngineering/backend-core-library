@@ -1,0 +1,39 @@
+version: v1
+managed:
+  enabled: true
+  java_multiple_files: true
+  java_package_prefix: com
+  java_string_check_utf8: false
+  go_package_prefix:
+    default: github.com/SolomonAIEngineering/backend-core-library/message_queue/generated/message-definition/v1
+    except:
+      - buf.build/types/dependencies
+      - buf.build/googleapis/googleapis
+      - buf.build/envoyproxy/protoc-gen-validate
+      - buf.build/grpc-ecosystem/grpc-gateway
+plugins:
+  - plugin: buf.build/protocolbuffers/go:v1.28.1
+    out: ../../message_queue/generated/message-definition
+    opt:
+      - paths=source_relative
+  - plugin: go-grpc
+    out: ../../message_queue/generated/message-definition
+    opt:
+      - paths=source_relative
+    strategy: directory
+  - plugin: gorm
+    out: ../../message_queue/generated/message-definition
+    opt:
+      - paths=source_relative
+      - engine=postgres
+      - enums=string
+  - plugin: buf.build/bufbuild/validate-go:v1.0.2
+    out: ../../message_queue/generated/message-definition
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/community/stephenh-ts-proto
+    out: ../../message_queue/generated/message-definition/ts/sdk
+  - plugin: buf.build/community/pseudomuto-doc
+    out: ../../message_queue/generated/message-definition/docs/message-definition
+    opt:
+      - markdown,docs.md

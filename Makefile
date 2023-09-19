@@ -25,9 +25,12 @@ TIMEOUT = 60
 .DEFAULT_GOAL := precommit
 
 .PHONY: precommit ci
-precommit: vanity-import-fix misspell go-mod-tidy  test-default
+precommit: fmt test vanity-import-fix misspell go-mod-tidy  test-default
 ci: vanity-import-check build test-default check-clean-work-tree test-coverage
-
+VERSION:=$(shell grep 'VERSION' version.go | awk '{ print $$4 }' | tr -d '"')
+PATCH_VERSION?=$(shell grep 'VERSION' version.go | awk -F'[".]' '{ printf "%s.%s.%d", $$2, $$3, $$4+1 }')
+MINOR_VERSION?=$(shell grep 'VERSION' version.go | awk -F'[".]' '{ printf "%s.%d.0", $$2, $$3+1 }')
+MAJOR_VERSION?=$(shell grep 'VERSION' version.go | awk -F'[".]' '{ printf "%d.0.0", $$2+1 }')
 # Tools
 
 TOOLS = $(CURDIR)/.tools
@@ -240,3 +243,32 @@ add-license: ## Find all .go files not in the vendor directory and try to write 
 
 changelog:
 	git-chglog --output CHANGELOG.md && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md'
+
+gen:
+	cd queue-message-format && make && cd ..
+
+# Define a function to update version
+define update-version
+	@next="$(1)"; \
+	current="$(VERSION)"; \
+	echo "version-set: current: $$current, next: $$next"; \
+	FILES="version.go \
+	for file in $$FILES; do \
+		/usr/bin/sed -i '' "s/$$current/$$next/g" $$file; \
+	done; \
+	echo "Version $$next set in code"; \
+	make sync-kustomize
+endef
+
+minor-version-set:
+	$(call update-version,$(MINOR_VERSION))
+
+major-version-set:
+	$(call update-version,$(MAJOR_VERSION))
+
+patch-version-set:
+	$(call update-version,$(PATCH_VERSION))
+
+fmt:
+	gofmt -l -s -w ./..
+	goimports -l -w ./..

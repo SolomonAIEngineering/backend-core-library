@@ -1,4 +1,4 @@
-package worker
+package worker // import "github.com/SimifiniiCTO/simfiny-core-lib/task-processor/worker"
 
 import (
 	"context"

@@ -4,16 +4,20 @@ go 1.20
 
 require (
 	github.com/GetStream/stream-go2/v7 v7.1.0
-	github.com/SimifiniiCTO/asynq v0.0.0-20230711073105-06fd337c06da
-	github.com/algolia/algoliasearch-client-go/v3 v3.31.0
-	github.com/alicebob/miniredis/v2 v2.30.5
-	github.com/aws/aws-sdk-go v1.45.11
+	github.com/SimifiniiCTO/asynq v0.0.0-20230512193438-0e30b7c808e5
+	github.com/algolia/algoliasearch-client-go/v3 v3.29.2
+	github.com/alicebob/miniredis/v2 v2.30.2
+	github.com/aws/aws-sdk-go v1.44.264
+	github.com/envoyproxy/protoc-gen-validate v0.10.0
 	github.com/giantswarm/retry-go v0.0.0-20151203102909-d78cea247d5e
 	github.com/gomodule/redigo v1.8.9
 	github.com/gorilla/mux v1.8.0
-	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.0.0
-	github.com/hashicorp/go-retryablehttp v0.7.4
+	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.0.0-rc.5
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+	github.com/hashicorp/go-retryablehttp v0.7.2
 	github.com/hibiken/asynq v0.24.1
+	github.com/infobloxopen/atlas-app-toolkit v1.4.0
+	github.com/infobloxopen/protoc-gen-gorm v1.1.2
 	github.com/jinzhu/gorm v1.9.16
 	github.com/newrelic/go-agent/v3 v3.24.1
 	github.com/newrelic/go-agent/v3/integrations/nrgorilla v1.1.1
@@ -21,21 +25,23 @@ require (
 	github.com/newrelic/go-agent/v3/integrations/nrmongo v1.1.1
 	github.com/newrelic/go-agent/v3/integrations/nrzap v1.0.1
 	github.com/patrickmn/go-cache v2.1.0+incompatible
-	github.com/redis/go-redis/v9 v9.1.0
-	github.com/spf13/viper v1.16.0
-	github.com/stretchr/testify v1.8.4
-	github.com/tryvium-travels/memongo v0.10.0
-	go.mongodb.org/mongo-driver v1.12.1
-	go.opentelemetry.io/otel v1.18.0
-	go.temporal.io/api v1.24.0
-	go.temporal.io/sdk v1.24.0
-	go.uber.org/zap v1.26.0
-	google.golang.org/grpc v1.58.1
+	github.com/redis/go-redis/v9 v9.0.4
+	github.com/spf13/viper v1.15.0
+	github.com/stretchr/testify v1.8.2
+	github.com/tryvium-travels/memongo v0.9.0
+	go.mongodb.org/mongo-driver v1.11.6
+	go.opentelemetry.io/otel v1.15.1
+	go.temporal.io/api v1.19.1-0.20230322213042-07fb271d475b
+	go.temporal.io/sdk v1.22.2
+	go.uber.org/zap v1.24.0
+	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1
+	google.golang.org/grpc v1.55.0
+	google.golang.org/protobuf v1.30.0
 	gopkg.in/square/go-jose.v2 v2.6.0
 	gorm.io/driver/clickhouse v0.5.1
-	gorm.io/driver/postgres v1.5.2
-	gorm.io/driver/sqlite v1.5.3
-	gorm.io/gorm v1.25.4
+	gorm.io/driver/postgres v1.5.0
+	gorm.io/driver/sqlite v1.5.0
+	gorm.io/gorm v1.25.1
 )
 
 require (
@@ -74,7 +80,8 @@ require (
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/juju/errgo v0.0.0-20140925100237-08cceb5d0b53 // indirect
-	github.com/klauspost/compress v1.16.0 // indirect
+	github.com/klauspost/compress v1.16.5 // indirect
+	github.com/lib/pq v1.3.1-0.20200116171513-9eb3fc897d6f // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
@@ -113,10 +120,6 @@ require (
 	golang.org/x/sys v0.11.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
-	google.golang.org/genproto v0.0.0-20230815205213-6bfd019c3878 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20230815205213-6bfd019c3878 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20230815205213-6bfd019c3878 // indirect
-	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

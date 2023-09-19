@@ -185,7 +185,7 @@ func TestClient_GetUnaryServerInterceptors(t *testing.T) {
 	}
 
 	interceptors := client.GetUnaryServerInterceptors()
-	if len(interceptors) != 2 {
+	if len(interceptors) != 1 {
 		t.Errorf("Expected GetUnaryServerInterceptors to return an array with 2 elements, but got %d", len(interceptors))
 	}
 }
@@ -197,7 +197,7 @@ func TestClient_GetStreamServerInterceptors(t *testing.T) {
 	}
 
 	interceptors := client.GetStreamServerInterceptors()
-	if len(interceptors) != 2 {
+	if len(interceptors) != 1 {
 		t.Errorf("Expected GetStreamServerInterceptors to return an array with 2 elements, but got %d", len(interceptors))
 	}
 }

@@ -37,4 +37,4 @@
 //	   }
 //	   fmt.Println("Value:", value)
 //	}
-package redis
+package redis // import "github.com/SimifiniiCTO/simfiny-core-lib/database/redis"
