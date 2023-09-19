@@ -1,4 +1,4 @@
-package workerpool // import "github.com/SimifiniiCTO/simfiny-core-lib/worker-pool"
+package workerpool // import "github.com/SolomonAIEngineering/backend-core-library/worker-pool"
 
 // This implementation defines a WorkerPool struct that contains a channel
 // of channels (workers) that can hold a maximum of `max-workers` worker channels

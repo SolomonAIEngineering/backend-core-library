@@ -1,4 +1,4 @@
-package manager // import "github.com/SimifiniiCTO/simfiny-core-lib/third-party/transaction-manager"
+package manager // import "github.com/SolomonAIEngineering/backend-core-library/third-party/transaction-manager"
 
 import (
 	"context"

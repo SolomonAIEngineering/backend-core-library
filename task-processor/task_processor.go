@@ -1,4 +1,4 @@
-package taskprocessor // import "github.com/SimifiniiCTO/simfiny-core-lib/task-processor"
+package taskprocessor // import "github.com/SolomonAIEngineering/backend-core-library/task-processor"
 
 import (
 	"context"

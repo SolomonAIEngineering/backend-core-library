@@ -1,7 +1,7 @@
 //go:build !windows
 // +build !windows
 
-package signals // import "github.com/SimifiniiCTO/simfiny-core-lib/signals"
+package signals // import "github.com/SolomonAIEngineering/backend-core-library/signals"
 
 import (
 	"os"

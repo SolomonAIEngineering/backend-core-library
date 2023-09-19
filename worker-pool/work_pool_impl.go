@@ -1,4 +1,4 @@
-package workerpool // import "github.com/SimifiniiCTO/simfiny-core-lib/worker-pool"
+package workerpool // import "github.com/SolomonAIEngineering/backend-core-library/worker-pool"
 
 import (
 	"context"

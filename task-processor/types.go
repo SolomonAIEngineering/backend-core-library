@@ -1,4 +1,4 @@
-package taskprocessor // import "github.com/SimifiniiCTO/simfiny-core-lib/task-processor"
+package taskprocessor // import "github.com/SolomonAIEngineering/backend-core-library/task-processor"
 
 // ProcessingInterval represents the various processing intervals for a recurring task
 type ProcessingInterval string

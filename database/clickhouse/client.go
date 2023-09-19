@@ -1,4 +1,4 @@
-package clickhouse // import "github.com/SimifiniiCTO/simfiny-core-lib/database/clickhouse"
+package clickhouse // import "github.com/SolomonAIEngineering/backend-core-library/database/clickhouse"
 
 import (
 	"errors"

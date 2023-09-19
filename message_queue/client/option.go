@@ -1,4 +1,4 @@
-package client // import "github.com/SimifiniiCTO/simfiny-core-lib/message_queue/client"
+package client // import "github.com/SolomonAIEngineering/backend-core-library/message_queue/client"
 
 import (
 	"fmt"

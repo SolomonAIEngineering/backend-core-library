@@ -1,4 +1,4 @@
-package redis // import "github.com/SimifiniiCTO/simfiny-core-lib/database/redis"
+package redis // import "github.com/SolomonAIEngineering/backend-core-library/database/redis"
 
 import (
 	"fmt"
@@ -30,7 +30,7 @@ func (c *Client) startCachePool(ticker *time.Ticker, stopCh <-chan struct{}) {
 	// set <hostname>=<version> with an expiry time of one minute
 	setVersion := func() {
 		conn := c.pool.Get()
-		if _, err := conn.Do("SET", c.serviceName, corelib.Version(), "EX", 60); err != nil {
+		if _, err := conn.Do("SET", c.serviceName, corelib.VERSION, "EX", 60); err != nil {
 			c.Logger.Warn("cache server is offline", zap.Error(err), zap.String("server", c.URI))
 		}
 		_ = conn.Close()

@@ -4,7 +4,7 @@
 // not use this file except in compliance with the License. You may obtain
 // a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 
-package client // import "github.com/SimifiniiCTO/simfiny-core-lib/message_queue/client"
+package client // import "github.com/SolomonAIEngineering/backend-core-library/message_queue/client"
 
 // The SendRequest type represents a message to be sent to a queue with a specified URL, body, and
 // attributes.
