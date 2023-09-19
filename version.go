@@ -7,5 +7,5 @@
 package corelib
 
 // Version is the current release version of OpenTelemetry in use.
-var VERSION = "1.0.8"
+var VERSION = "1.0.9"
 var REVISION = "unknown"
