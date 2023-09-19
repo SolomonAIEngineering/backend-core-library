@@ -6,11 +6,16 @@ on:
       - main
     types:
       - closed
+  push:
+    branches:
+      - main
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    if: |
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.title, 'release-')
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
