@@ -252,11 +252,11 @@ define update-version
 	@next="$(1)"; \
 	current="$(VERSION)"; \
 	echo "version-set: current: $$current, next: $$next"; \
-	FILES="version.go \
+	FILES="./version.go; \
 	for file in $$FILES; do \
 		/usr/bin/sed -i '' "s/$$current/$$next/g" $$file; \
 	done; \
-	echo "Version $$next set in code"; \
+	echo "Version $$next set in code, deployment, chart and kustomize"; \
 	make sync-kustomize
 endef
 
