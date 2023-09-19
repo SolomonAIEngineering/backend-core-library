@@ -7,5 +7,5 @@
 package corelib // import "github.com/SolomonAIEngineering/backend-core-library"
 
 // Version is the current release version of OpenTelemetry in use.
-var VERSION = "1.1.0"
+var VERSION = "1.1.1"
 var REVISION = "unknown"
