@@ -275,7 +275,7 @@ release-minor-version:
 	make minor-version-set
 	git add .
 	git commit -m "bumping version from $(VERSION) to $(MINOR_VERSION)"
-	git tag $(MINOR_VERSION)
+	git tag -s -m $(MINOR_VERSION)
 	git push --set-upstream origin release-$(MINOR_VERSION)
 	git push origin $(MINOR_VERSION)
 
@@ -285,7 +285,7 @@ release-major-version:
 	make major-version-set
 	git add .
 	git commit -m "bumping version from $(VERSION) to $(MAJOR_VERSION)"
-	git tag $(MAJOR_VERSION)
+	git tag -s -m $(MAJOR_VERSION)
 	git push --set-upstream origin release-$(MAJOR_VERSION)
 	git push origin $(MAJOR_VERSION)
 
@@ -295,7 +295,7 @@ release-patch-version:
 	make patch-version-set
 	git add .
 	git commit -m "bumping version from $(VERSION) to $(PATCH_VERSION)"
-	git tag $(PATCH_VERSION)
+	git tag -s -m $(PATCH_VERSION)
 	git push --set-upstream origin release-$(PATCH_VERSION)
 	git push origin $(PATCH_VERSION)
 
