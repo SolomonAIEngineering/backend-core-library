@@ -25,13 +25,6 @@ jobs:
         run: |
           LATEST_TAG=$(git describe --tags --abbrev=0)
           echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
-
-      - name: Increment tag version (minor)
-        id: increment-version
-        run: |
-          NEW_TAG=$(echo $LATEST_TAG | awk -F. '{$2=$2+1}1' OFS=. | awk '{$3=0}1' OFS=.)
-          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
