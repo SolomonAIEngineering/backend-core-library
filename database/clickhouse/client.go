@@ -1,4 +1,4 @@
-package clickhouse
+package clickhouse // import "github.com/SimifiniiCTO/simfiny-core-lib/database/clickhouse"
 
 import (
 	"errors"

@@ -168,7 +168,7 @@
 - add readme files
 - add readme files
 - remove benchmark stage
-- remove unecessary ci/cd step
+- remove unnecessary ci/cd step
 - update ci/cd workflow
 - add output file for benchmark tests
 - checkpoint

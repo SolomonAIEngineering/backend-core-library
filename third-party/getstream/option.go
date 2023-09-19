@@ -1,4 +1,4 @@
-package getstream
+package getstream // import "github.com/SimifiniiCTO/simfiny-core-lib/third-party/getstream"
 
 import (
 	"github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"

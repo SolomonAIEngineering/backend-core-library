@@ -1,4 +1,4 @@
-package signals
+package signals // import "github.com/SimifiniiCTO/simfiny-core-lib/signals"
 
 import (
 	"os"

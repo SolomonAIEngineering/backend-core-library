@@ -5,10 +5,10 @@ import Long = require("long");
 export const protobufPackage = "message_definition.v1";
 
 /**
- * HeadlessAuthenticationServiceDeleteAccountMessageFormat: represents an sqs message format
- * for deleting an account via the headless authentication service
+ * DeleteAccountMessageFormat: represents an sqs message format
+ * for deleting an accoun
  */
-export interface HeadlessAuthenticationServiceDeleteAccountMessageFormat {
+export interface DeleteAccountMessageFormat {
   /**
    * authn id which is the id of the account from the vantage point of the
    * authentication service
@@ -20,48 +20,32 @@ export interface HeadlessAuthenticationServiceDeleteAccountMessageFormat {
    * - must be an email and required
    */
   email: string;
-}
-
-/**
- * FinancialIntegrationServiceMessageFormat: represents an sqs message format
- * for deleting an account via the financial integration service
- */
-export interface FinancialIntegrationServiceMessageFormat {
   /** user_id id from the vantage point of the user service */
   userId: number;
 }
 
-/**
- * SocialServiceMessageFormat: represents an sqs message format
- * for deleting an account via the financial integration service
- */
-export interface SocialServiceMessageFormat {
-  /** user_id id from the vantage point of the social service */
-  userId: number;
+function createBaseDeleteAccountMessageFormat(): DeleteAccountMessageFormat {
+  return { authnId: 0, email: "", userId: 0 };
 }
 
-function createBaseHeadlessAuthenticationServiceDeleteAccountMessageFormat(): HeadlessAuthenticationServiceDeleteAccountMessageFormat {
-  return { authnId: 0, email: "" };
-}
-
-export const HeadlessAuthenticationServiceDeleteAccountMessageFormat = {
-  encode(
-    message: HeadlessAuthenticationServiceDeleteAccountMessageFormat,
-    writer: _m0.Writer = _m0.Writer.create(),
-  ): _m0.Writer {
+export const DeleteAccountMessageFormat = {
+  encode(message: DeleteAccountMessageFormat, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.authnId !== 0) {
       writer.uint32(8).uint64(message.authnId);
     }
     if (message.email !== "") {
       writer.uint32(18).string(message.email);
     }
+    if (message.userId !== 0) {
+      writer.uint32(24).uint64(message.userId);
+    }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): HeadlessAuthenticationServiceDeleteAccountMessageFormat {
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeleteAccountMessageFormat {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseHeadlessAuthenticationServiceDeleteAccountMessageFormat();
+    const message = createBaseDeleteAccountMessageFormat();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -79,6 +63,13 @@ export const HeadlessAuthenticationServiceDeleteAccountMessageFormat = {
 
           message.email = reader.string();
           continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.userId = longToNumber(reader.uint64() as Long);
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -88,14 +79,15 @@ export const HeadlessAuthenticationServiceDeleteAccountMessageFormat = {
     return message;
   },
 
-  fromJSON(object: any): HeadlessAuthenticationServiceDeleteAccountMessageFormat {
+  fromJSON(object: any): DeleteAccountMessageFormat {
     return {
       authnId: isSet(object.authnId) ? Number(object.authnId) : 0,
       email: isSet(object.email) ? String(object.email) : "",
+      userId: isSet(object.userId) ? Number(object.userId) : 0,
     };
   },
 
-  toJSON(message: HeadlessAuthenticationServiceDeleteAccountMessageFormat): unknown {
+  toJSON(message: DeleteAccountMessageFormat): unknown {
     const obj: any = {};
     if (message.authnId !== 0) {
       obj.authnId = Math.round(message.authnId);
@@ -103,137 +95,19 @@ export const HeadlessAuthenticationServiceDeleteAccountMessageFormat = {
     if (message.email !== "") {
       obj.email = message.email;
     }
+    if (message.userId !== 0) {
+      obj.userId = Math.round(message.userId);
+    }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<HeadlessAuthenticationServiceDeleteAccountMessageFormat>, I>>(
-    base?: I,
-  ): HeadlessAuthenticationServiceDeleteAccountMessageFormat {
-    return HeadlessAuthenticationServiceDeleteAccountMessageFormat.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<DeleteAccountMessageFormat>, I>>(base?: I): DeleteAccountMessageFormat {
+    return DeleteAccountMessageFormat.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<HeadlessAuthenticationServiceDeleteAccountMessageFormat>, I>>(
-    object: I,
-  ): HeadlessAuthenticationServiceDeleteAccountMessageFormat {
-    const message = createBaseHeadlessAuthenticationServiceDeleteAccountMessageFormat();
+  fromPartial<I extends Exact<DeepPartial<DeleteAccountMessageFormat>, I>>(object: I): DeleteAccountMessageFormat {
+    const message = createBaseDeleteAccountMessageFormat();
     message.authnId = object.authnId ?? 0;
     message.email = object.email ?? "";
-    return message;
-  },
-};
-
-function createBaseFinancialIntegrationServiceMessageFormat(): FinancialIntegrationServiceMessageFormat {
-  return { userId: 0 };
-}
-
-export const FinancialIntegrationServiceMessageFormat = {
-  encode(message: FinancialIntegrationServiceMessageFormat, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.userId !== 0) {
-      writer.uint32(8).uint64(message.userId);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): FinancialIntegrationServiceMessageFormat {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseFinancialIntegrationServiceMessageFormat();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.userId = longToNumber(reader.uint64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): FinancialIntegrationServiceMessageFormat {
-    return { userId: isSet(object.userId) ? Number(object.userId) : 0 };
-  },
-
-  toJSON(message: FinancialIntegrationServiceMessageFormat): unknown {
-    const obj: any = {};
-    if (message.userId !== 0) {
-      obj.userId = Math.round(message.userId);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<FinancialIntegrationServiceMessageFormat>, I>>(
-    base?: I,
-  ): FinancialIntegrationServiceMessageFormat {
-    return FinancialIntegrationServiceMessageFormat.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<FinancialIntegrationServiceMessageFormat>, I>>(
-    object: I,
-  ): FinancialIntegrationServiceMessageFormat {
-    const message = createBaseFinancialIntegrationServiceMessageFormat();
-    message.userId = object.userId ?? 0;
-    return message;
-  },
-};
-
-function createBaseSocialServiceMessageFormat(): SocialServiceMessageFormat {
-  return { userId: 0 };
-}
-
-export const SocialServiceMessageFormat = {
-  encode(message: SocialServiceMessageFormat, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.userId !== 0) {
-      writer.uint32(8).uint64(message.userId);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SocialServiceMessageFormat {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSocialServiceMessageFormat();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.userId = longToNumber(reader.uint64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): SocialServiceMessageFormat {
-    return { userId: isSet(object.userId) ? Number(object.userId) : 0 };
-  },
-
-  toJSON(message: SocialServiceMessageFormat): unknown {
-    const obj: any = {};
-    if (message.userId !== 0) {
-      obj.userId = Math.round(message.userId);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SocialServiceMessageFormat>, I>>(base?: I): SocialServiceMessageFormat {
-    return SocialServiceMessageFormat.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SocialServiceMessageFormat>, I>>(object: I): SocialServiceMessageFormat {
-    const message = createBaseSocialServiceMessageFormat();
     message.userId = object.userId ?? 0;
     return message;
   },

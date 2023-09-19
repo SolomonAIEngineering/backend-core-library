@@ -35,25 +35,22 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on
-// HeadlessAuthenticationServiceDeleteAccountMessageFormat with the rules
-// defined in the proto definition for this message. If any rules are
+// Validate checks the field values on DeleteAccountMessageFormat with the
+// rules defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *HeadlessAuthenticationServiceDeleteAccountMessageFormat) Validate() error {
+func (m *DeleteAccountMessageFormat) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on
-// HeadlessAuthenticationServiceDeleteAccountMessageFormat with the rules
-// defined in the proto definition for this message. If any rules are
+// ValidateAll checks the field values on DeleteAccountMessageFormat with the
+// rules defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// HeadlessAuthenticationServiceDeleteAccountMessageFormatMultiError, or nil
-// if none found.
-func (m *HeadlessAuthenticationServiceDeleteAccountMessageFormat) ValidateAll() error {
+// DeleteAccountMessageFormatMultiError, or nil if none found.
+func (m *DeleteAccountMessageFormat) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *HeadlessAuthenticationServiceDeleteAccountMessageFormat) validate(all bool) error {
+func (m *DeleteAccountMessageFormat) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -63,7 +60,7 @@ func (m *HeadlessAuthenticationServiceDeleteAccountMessageFormat) validate(all b
 	// no validation rules for AuthnId
 
 	if err := m._validateEmail(m.GetEmail()); err != nil {
-		err = HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError{
+		err = DeleteAccountMessageFormatValidationError{
 			field:  "Email",
 			reason: "value must be a valid email address",
 			cause:  err,
@@ -74,14 +71,16 @@ func (m *HeadlessAuthenticationServiceDeleteAccountMessageFormat) validate(all b
 		errors = append(errors, err)
 	}
 
+	// no validation rules for UserId
+
 	if len(errors) > 0 {
-		return HeadlessAuthenticationServiceDeleteAccountMessageFormatMultiError(errors)
+		return DeleteAccountMessageFormatMultiError(errors)
 	}
 
 	return nil
 }
 
-func (m *HeadlessAuthenticationServiceDeleteAccountMessageFormat) _validateHostname(host string) error {
+func (m *DeleteAccountMessageFormat) _validateHostname(host string) error {
 	s := strings.ToLower(strings.TrimSuffix(host, "."))
 
 	if len(host) > 253 {
@@ -111,7 +110,7 @@ func (m *HeadlessAuthenticationServiceDeleteAccountMessageFormat) _validateHostn
 	return nil
 }
 
-func (m *HeadlessAuthenticationServiceDeleteAccountMessageFormat) _validateEmail(addr string) error {
+func (m *DeleteAccountMessageFormat) _validateEmail(addr string) error {
 	a, err := mail.ParseAddress(addr)
 	if err != nil {
 		return err
@@ -131,14 +130,13 @@ func (m *HeadlessAuthenticationServiceDeleteAccountMessageFormat) _validateEmail
 	return m._validateHostname(parts[1])
 }
 
-// HeadlessAuthenticationServiceDeleteAccountMessageFormatMultiError is an
-// error wrapping multiple validation errors returned by
-// HeadlessAuthenticationServiceDeleteAccountMessageFormat.ValidateAll() if
+// DeleteAccountMessageFormatMultiError is an error wrapping multiple
+// validation errors returned by DeleteAccountMessageFormat.ValidateAll() if
 // the designated constraints aren't met.
-type HeadlessAuthenticationServiceDeleteAccountMessageFormatMultiError []error
+type DeleteAccountMessageFormatMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m HeadlessAuthenticationServiceDeleteAccountMessageFormatMultiError) Error() string {
+func (m DeleteAccountMessageFormatMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -147,15 +145,11 @@ func (m HeadlessAuthenticationServiceDeleteAccountMessageFormatMultiError) Error
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m HeadlessAuthenticationServiceDeleteAccountMessageFormatMultiError) AllErrors() []error {
-	return m
-}
+func (m DeleteAccountMessageFormatMultiError) AllErrors() []error { return m }
 
-// HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError is
-// the validation error returned by
-// HeadlessAuthenticationServiceDeleteAccountMessageFormat.Validate if the
-// designated constraints aren't met.
-type HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError struct {
+// DeleteAccountMessageFormatValidationError is the validation error returned
+// by DeleteAccountMessageFormat.Validate if the designated constraints aren't met.
+type DeleteAccountMessageFormatValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -163,32 +157,24 @@ type HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError stru
 }
 
 // Field function returns field value.
-func (e HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError) Field() string {
-	return e.field
-}
+func (e DeleteAccountMessageFormatValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError) Reason() string {
-	return e.reason
-}
+func (e DeleteAccountMessageFormatValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError) Cause() error {
-	return e.cause
-}
+func (e DeleteAccountMessageFormatValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError) Key() bool {
-	return e.key
-}
+func (e DeleteAccountMessageFormatValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError) ErrorName() string {
-	return "HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError"
+func (e DeleteAccountMessageFormatValidationError) ErrorName() string {
+	return "DeleteAccountMessageFormatValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError) Error() string {
+func (e DeleteAccountMessageFormatValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -200,14 +186,14 @@ func (e HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError) 
 	}
 
 	return fmt.Sprintf(
-		"invalid %sHeadlessAuthenticationServiceDeleteAccountMessageFormat.%s: %s%s",
+		"invalid %sDeleteAccountMessageFormat.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError{}
+var _ error = DeleteAccountMessageFormatValidationError{}
 
 var _ interface {
 	Field() string
@@ -215,216 +201,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = HeadlessAuthenticationServiceDeleteAccountMessageFormatValidationError{}
-
-// Validate checks the field values on FinancialIntegrationServiceMessageFormat
-// with the rules defined in the proto definition for this message. If any
-// rules are violated, the first error encountered is returned, or nil if
-// there are no violations.
-func (m *FinancialIntegrationServiceMessageFormat) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on
-// FinancialIntegrationServiceMessageFormat with the rules defined in the
-// proto definition for this message. If any rules are violated, the result is
-// a list of violation errors wrapped in
-// FinancialIntegrationServiceMessageFormatMultiError, or nil if none found.
-func (m *FinancialIntegrationServiceMessageFormat) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *FinancialIntegrationServiceMessageFormat) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for UserId
-
-	if len(errors) > 0 {
-		return FinancialIntegrationServiceMessageFormatMultiError(errors)
-	}
-
-	return nil
-}
-
-// FinancialIntegrationServiceMessageFormatMultiError is an error wrapping
-// multiple validation errors returned by
-// FinancialIntegrationServiceMessageFormat.ValidateAll() if the designated
-// constraints aren't met.
-type FinancialIntegrationServiceMessageFormatMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m FinancialIntegrationServiceMessageFormatMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m FinancialIntegrationServiceMessageFormatMultiError) AllErrors() []error { return m }
-
-// FinancialIntegrationServiceMessageFormatValidationError is the validation
-// error returned by FinancialIntegrationServiceMessageFormat.Validate if the
-// designated constraints aren't met.
-type FinancialIntegrationServiceMessageFormatValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e FinancialIntegrationServiceMessageFormatValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e FinancialIntegrationServiceMessageFormatValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e FinancialIntegrationServiceMessageFormatValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e FinancialIntegrationServiceMessageFormatValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e FinancialIntegrationServiceMessageFormatValidationError) ErrorName() string {
-	return "FinancialIntegrationServiceMessageFormatValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e FinancialIntegrationServiceMessageFormatValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sFinancialIntegrationServiceMessageFormat.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = FinancialIntegrationServiceMessageFormatValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = FinancialIntegrationServiceMessageFormatValidationError{}
-
-// Validate checks the field values on SocialServiceMessageFormat with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *SocialServiceMessageFormat) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on SocialServiceMessageFormat with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// SocialServiceMessageFormatMultiError, or nil if none found.
-func (m *SocialServiceMessageFormat) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *SocialServiceMessageFormat) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for UserId
-
-	if len(errors) > 0 {
-		return SocialServiceMessageFormatMultiError(errors)
-	}
-
-	return nil
-}
-
-// SocialServiceMessageFormatMultiError is an error wrapping multiple
-// validation errors returned by SocialServiceMessageFormat.ValidateAll() if
-// the designated constraints aren't met.
-type SocialServiceMessageFormatMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m SocialServiceMessageFormatMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m SocialServiceMessageFormatMultiError) AllErrors() []error { return m }
-
-// SocialServiceMessageFormatValidationError is the validation error returned
-// by SocialServiceMessageFormat.Validate if the designated constraints aren't met.
-type SocialServiceMessageFormatValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e SocialServiceMessageFormatValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e SocialServiceMessageFormatValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e SocialServiceMessageFormatValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e SocialServiceMessageFormatValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e SocialServiceMessageFormatValidationError) ErrorName() string {
-	return "SocialServiceMessageFormatValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e SocialServiceMessageFormatValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sSocialServiceMessageFormat.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = SocialServiceMessageFormatValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = SocialServiceMessageFormatValidationError{}
+} = DeleteAccountMessageFormatValidationError{}

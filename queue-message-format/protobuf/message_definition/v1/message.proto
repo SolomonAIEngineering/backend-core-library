@@ -9,10 +9,10 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 option go_package = "github.com/SolomonAIEngineering/backend-core-library/message_queue/generated/message-definition/v1";
 
 /*
-  HeadlessAuthenticationServiceDeleteAccountMessageFormat: represents an sqs message format
-  for deleting an account via the headless authentication service
+  DeleteAccountMessageFormat: represents an sqs message format
+  for deleting an accoun
 */
-message HeadlessAuthenticationServiceDeleteAccountMessageFormat {
+message DeleteAccountMessageFormat {
   option (gorm.opts) = {
     ormable : true,
   };
@@ -32,34 +32,9 @@ message HeadlessAuthenticationServiceDeleteAccountMessageFormat {
       example: "\"lksdjhfgsdhfghdsgfhgdh@gmail.com\""
     } 
   ];
-}
 
-/*
-  FinancialIntegrationServiceMessageFormat: represents an sqs message format
-  for deleting an account via the financial integration service
-*/
-message FinancialIntegrationServiceMessageFormat {
-  option (gorm.opts) = {
-    ormable : true,
-  };
   // user_id id from the vantage point of the user service
-  uint64 user_id = 1 [
-    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
-      example: ""
-    }
-  ];
-}
-
-/*
-  SocialServiceMessageFormat: represents an sqs message format
-  for deleting an account via the financial integration service
-*/
-message SocialServiceMessageFormat {
-  option (gorm.opts) = {
-    ormable : true,
-  };
-  // user_id id from the vantage point of the social service
-  uint64 user_id = 1 [
+  uint64 user_id = 3 [
     (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
       example: ""
     }

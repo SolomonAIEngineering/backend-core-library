@@ -1,4 +1,4 @@
-package manager
+package manager // import "github.com/SimifiniiCTO/simfiny-core-lib/third-party/transaction-manager"
 
 import (
 	"time"

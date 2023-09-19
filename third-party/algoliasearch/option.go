@@ -1,4 +1,4 @@
-package algoliasearch
+package algoliasearch // import "github.com/SimifiniiCTO/simfiny-core-lib/third-party/algoliasearch"
 
 import "github.com/SimifiniiCTO/simfiny-core-lib/instrumentation"
 

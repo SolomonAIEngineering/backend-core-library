@@ -15,9 +15,7 @@
     - [NotFoundErrorCode](#message_definition-v1-NotFoundErrorCode)
   
 - [message_definition/v1/message.proto](#message_definition_v1_message-proto)
-    - [FinancialIntegrationServiceMessageFormat](#message_definition-v1-FinancialIntegrationServiceMessageFormat)
-    - [HeadlessAuthenticationServiceDeleteAccountMessageFormat](#message_definition-v1-HeadlessAuthenticationServiceDeleteAccountMessageFormat)
-    - [SocialServiceMessageFormat](#message_definition-v1-SocialServiceMessageFormat)
+    - [DeleteAccountMessageFormat](#message_definition-v1-DeleteAccountMessageFormat)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -215,49 +213,18 @@
 
 
 
-<a name="message_definition-v1-FinancialIntegrationServiceMessageFormat"></a>
+<a name="message_definition-v1-DeleteAccountMessageFormat"></a>
 
-### FinancialIntegrationServiceMessageFormat
-FinancialIntegrationServiceMessageFormat: represents an sqs message format
-for deleting an account via the financial integration service
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| user_id | [uint64](#uint64) |  | user_id id from the vantage point of the user service |
-
-
-
-
-
-
-<a name="message_definition-v1-HeadlessAuthenticationServiceDeleteAccountMessageFormat"></a>
-
-### HeadlessAuthenticationServiceDeleteAccountMessageFormat
-HeadlessAuthenticationServiceDeleteAccountMessageFormat: represents an sqs message format
-for deleting an account via the headless authentication service
+### DeleteAccountMessageFormat
+DeleteAccountMessageFormat: represents an sqs message format
+for deleting an accoun
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | authn_id | [uint64](#uint64) |  | authn id which is the id of the account from the vantage point of the authentication service |
 | email | [string](#string) |  | account email Validations: - must be an email and required |
-
-
-
-
-
-
-<a name="message_definition-v1-SocialServiceMessageFormat"></a>
-
-### SocialServiceMessageFormat
-SocialServiceMessageFormat: represents an sqs message format
-for deleting an account via the financial integration service
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| user_id | [uint64](#uint64) |  | user_id id from the vantage point of the social service |
+| user_id | [uint64](#uint64) |  | user_id id from the vantage point of the user service |
 
 
 

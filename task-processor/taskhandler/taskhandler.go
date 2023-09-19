@@ -1,4 +1,4 @@
-package taskhandler
+package taskhandler // import "github.com/SimifiniiCTO/simfiny-core-lib/task-processor/taskhandler"
 
 import "github.com/SimifiniiCTO/asynq"
 
