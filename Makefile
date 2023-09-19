@@ -252,15 +252,15 @@ define update-version
 	@next="$(1)"; \
 	current="$(VERSION)"; \
 	echo "version-set: current: $$current, next: $$next"; \
-	FILES="./version.go; \
+	FILES="./version.go"; \
 	for file in $$FILES; do \
 		/usr/bin/sed -i '' "s/$$current/$$next/g" $$file; \
 	done; \
-	echo "Version $$next set in code, deployment, chart and kustomize"; \
-	make sync-kustomize
+	echo "Version $$next set in code, deployment, chart and kustomize";
 endef
 
 minor-version-set:
+	echo hello
 	$(call update-version,$(MINOR_VERSION))
 
 major-version-set:
@@ -268,6 +268,36 @@ major-version-set:
 
 patch-version-set:
 	$(call update-version,$(PATCH_VERSION))
+
+release-minor-version: 
+	echo "Releasing $(MINOR_VERSION)"
+	git checkout -b release-$(MINOR_VERSION)
+	make minor-version-set
+	git add .
+	git commit -m "bumping version from $(VERSION) to $(MINOR_VERSION)"
+	git tag $(MINOR_VERSION)
+	git push --set-upstream origin release-$(MINOR_VERSION)
+	git push origin $(MINOR_VERSION)
+
+release-major-version: 
+	echo "Releasing $(MAJOR_VERSION)"
+	git checkout -b release-$(MAJOR_VERSION)
+	make major-version-set
+	git add .
+	git commit -m "bumping version from $(VERSION) to $(MAJOR_VERSION)"
+	git tag $(MAJOR_VERSION)
+	git push --set-upstream origin release-$(MAJOR_VERSION)
+	git push origin $(MAJOR_VERSION)
+
+release-patch-version:
+	echo "Releasing $(PATCH_VERSION)"
+	git checkout -b release-$(PATCH_VERSION)
+	make patch-version-set
+	git add .
+	git commit -m "bumping version from $(VERSION) to $(PATCH_VERSION)"
+	git tag $(PATCH_VERSION)
+	git push --set-upstream origin release-$(PATCH_VERSION)
+	git push origin $(PATCH_VERSION)
 
 fmt:
 	gofmt -l -s -w ./..
