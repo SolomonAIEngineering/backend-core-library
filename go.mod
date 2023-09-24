@@ -8,7 +8,7 @@ require (
 	github.com/algolia/algoliasearch-client-go/v3 v3.29.2
 	github.com/alicebob/miniredis/v2 v2.30.2
 	github.com/aws/aws-sdk-go v1.44.264
-	github.com/envoyproxy/protoc-gen-validate v0.10.0
+	github.com/envoyproxy/protoc-gen-validate v1.0.2
 	github.com/giantswarm/retry-go v0.0.0-20151203102909-d78cea247d5e
 	github.com/gomodule/redigo v1.8.9
 	github.com/gorilla/mux v1.8.0
