@@ -31,10 +31,10 @@ require (
 	github.com/tryvium-travels/memongo v0.9.0
 	go.mongodb.org/mongo-driver v1.11.6
 	go.opentelemetry.io/otel v1.18.0
-	go.temporal.io/api v1.19.1-0.20230322213042-07fb271d475b
-	go.temporal.io/sdk v1.22.2
+	go.temporal.io/api v1.21.0
+	go.temporal.io/sdk v1.24.0
 	go.uber.org/zap v1.24.0
-	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1
+	google.golang.org/genproto v0.0.0-20230525154841-bd750badd5c6
 	google.golang.org/grpc v1.55.0
 	google.golang.org/protobuf v1.30.0
 	gopkg.in/square/go-jose.v2 v2.6.0
