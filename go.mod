@@ -40,8 +40,8 @@ require (
 	gopkg.in/square/go-jose.v2 v2.6.0
 	gorm.io/driver/clickhouse v0.5.1
 	gorm.io/driver/postgres v1.5.0
-	gorm.io/driver/sqlite v1.5.0
-	gorm.io/gorm v1.25.1
+	gorm.io/driver/sqlite v1.5.4
+	gorm.io/gorm v1.25.2-0.20230530020048-26663ab9bf55
 )
 
 require (
