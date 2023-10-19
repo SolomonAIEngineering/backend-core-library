@@ -110,7 +110,11 @@ func (c *ConsumerClient) poll() {
 		case <-c.stopCh:
 			return
 		default:
-			ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+			ctx, cancel := context.
+				WithTimeout(
+					context.Background(),
+					// TODO: make this configurable
+					30*time.Second)
 			defer cancel()
 
 			if c.queueUrl == nil {
@@ -118,15 +122,20 @@ func (c *ConsumerClient) poll() {
 				return
 			}
 
-			result, err := c.sqsClient.ReceiveMessageWithContext(ctx, &sqs.ReceiveMessageInput{
-				QueueUrl: c.queueUrl,
-				AttributeNames: []*string{
-					aws.String(sqs.QueueAttributeNameAll),
-				},
-				MessageAttributeNames: []*string{
-					aws.String(sqs.QueueAttributeNameAll),
-				},
-			})
+			result, err := c.sqsClient.ReceiveMessageWithContext(ctx,
+				&sqs.ReceiveMessageInput{
+					QueueUrl: c.queueUrl,
+					AttributeNames: []*string{
+						aws.String(sqs.QueueAttributeNameAll),
+					},
+					MessageAttributeNames: []*string{
+						aws.String(sqs.QueueAttributeNameAll),
+					},
+					// TODO: make this configurable
+					WaitTimeSeconds: aws.Int64(30 * c.waitTimeSecond),
+					// TODO: make this configurable
+					VisibilityTimeout: aws.Int64(40),
+				})
 			if err != nil {
 				c.handleAWSError(err)
 				c.logger.Error("Error while receiving message", zap.Error(err))

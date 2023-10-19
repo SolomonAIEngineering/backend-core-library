@@ -371,6 +371,7 @@ func (s *Client) configureNewrelicClient() error {
 		newrelic.ConfigAppLogForwardingEnabled(s.Enabled),
 		newrelic.ConfigAppLogForwardingMaxSamplesStored(1000),
 		newrelic.ConfigCustomInsightsEventsMaxSamplesStored(1000),
+
 		func(cfg *newrelic.Config) {
 			cfg.ErrorCollector.RecordPanics = s.Enabled
 			cfg.ErrorCollector.Enabled = s.Enabled
