@@ -1,4 +1,4 @@
-# Simfiny Core Library
+# Core Library
 
 [![CI](https://github.com/open-telemetry/simfiny-core-lib/workflows/ci/badge.svg)](https://github.com/open-telemetry/opentelemetry-go/actions?query=workflow%3Aci+branch%3Amain)
 [![codecov.io](https://codecov.io/gh/open-telemetry/opentelemetry-go/coverage.svg?branch=main)](https://app.codecov.io/gh/open-telemetry/opentelemetry-go?branch=main)
@@ -6,7 +6,7 @@
 [![Go Report Card](https://goreportcard.com/badge/go.opentelemetry.io/otel)](https://goreportcard.com/report/go.opentelemetry.io/otel)
 [![Slack](https://img.shields.io/badge/slack-@cncf/otel--go-brightgreen.svg?logo=slack)](https://cloud-native.slack.com/archives/C01NPAXACKT)
 
-Core-Library is the core [Go](https://golang.org/) library of [simfiny](https://www.simfiny.app/login/).
+Core-Library is the core [Go](https://golang.org/) library of [solomon-ai](https://www.app-release.solomon-ai.io/).
 It provides a set ofpackaeges to directly measure performance and behavior of your software and send this data to observability platforms.
 
 ## Project Status
