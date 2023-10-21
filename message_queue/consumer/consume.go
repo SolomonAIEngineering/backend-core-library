@@ -105,11 +105,15 @@ func (c *ConsumerClient) poll() {
 		workerTokens <- true
 	}
 
+	// Create a new ticker that triggers every 60 seconds
+	ticker := time.NewTicker(60 * time.Second)
+	defer ticker.Stop() // the ticker when the function exits
+
 	for {
 		select {
 		case <-c.stopCh:
 			return
-		default:
+		case <-ticker.C: // Wait for the ticker to trigger
 			ctx, cancel := context.
 				WithTimeout(
 					context.Background(),
@@ -164,6 +168,9 @@ func (c *ConsumerClient) poll() {
 			if c.maxPolls != -1 && c.pollCount > c.maxPolls {
 				return
 			}
+		default:
+			// just log
+			c.logger.Info("Waiting for messages")
 		}
 	}
 }
