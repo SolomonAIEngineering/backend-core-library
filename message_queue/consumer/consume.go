@@ -122,6 +122,14 @@ func (c *ConsumerClient) poll() {
 				return
 			}
 
+			var waitTimeInSeconds int64 = 0
+			// NOTE: we do this because aws throws a fit if the wait time in seconds is more than 20
+			if c.waitTimeSecond > 20 || c.waitTimeSecond <= 0 {
+				waitTimeInSeconds = 20
+			} else {
+				waitTimeInSeconds = int64(c.waitTimeSecond)
+			}
+
 			result, err := c.sqsClient.ReceiveMessageWithContext(ctx,
 				&sqs.ReceiveMessageInput{
 					QueueUrl: c.queueUrl,
@@ -132,7 +140,7 @@ func (c *ConsumerClient) poll() {
 						aws.String(sqs.QueueAttributeNameAll),
 					},
 					// TODO: make this configurable
-					WaitTimeSeconds: aws.Int64(30 * c.waitTimeSecond),
+					WaitTimeSeconds: aws.Int64(waitTimeInSeconds),
 					// TODO: make this configurable
 					VisibilityTimeout: aws.Int64(40),
 				})
