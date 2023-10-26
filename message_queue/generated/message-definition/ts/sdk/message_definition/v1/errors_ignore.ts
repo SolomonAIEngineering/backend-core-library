@@ -579,7 +579,7 @@ export const ValidationErrorMessageResponse = {
   fromJSON(object: any): ValidationErrorMessageResponse {
     return {
       code: isSet(object.code) ? errorCodeFromJSON(object.code) : 0,
-      message: isSet(object.message) ? String(object.message) : "",
+      message: isSet(object.message) ? globalThis.String(object.message) : "",
     };
   },
 
@@ -655,7 +655,7 @@ export const InternalErrorMessageResponse = {
   fromJSON(object: any): InternalErrorMessageResponse {
     return {
       code: isSet(object.code) ? internalErrorCodeFromJSON(object.code) : 0,
-      message: isSet(object.message) ? String(object.message) : "",
+      message: isSet(object.message) ? globalThis.String(object.message) : "",
     };
   },
 
@@ -729,7 +729,7 @@ export const PathUnknownErrorMessageResponse = {
   fromJSON(object: any): PathUnknownErrorMessageResponse {
     return {
       code: isSet(object.code) ? notFoundErrorCodeFromJSON(object.code) : 0,
-      message: isSet(object.message) ? String(object.message) : "",
+      message: isSet(object.message) ? globalThis.String(object.message) : "",
     };
   },
 
@@ -803,7 +803,8 @@ export const ErrorMessageRequest = {
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
   : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 

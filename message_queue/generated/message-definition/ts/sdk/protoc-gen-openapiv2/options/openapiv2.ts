@@ -1344,13 +1344,13 @@ export const Swagger = {
 
   fromJSON(object: any): Swagger {
     return {
-      swagger: isSet(object.swagger) ? String(object.swagger) : "",
+      swagger: isSet(object.swagger) ? globalThis.String(object.swagger) : "",
       info: isSet(object.info) ? Info.fromJSON(object.info) : undefined,
-      host: isSet(object.host) ? String(object.host) : "",
-      basePath: isSet(object.basePath) ? String(object.basePath) : "",
-      schemes: Array.isArray(object?.schemes) ? object.schemes.map((e: any) => schemeFromJSON(e)) : [],
-      consumes: Array.isArray(object?.consumes) ? object.consumes.map((e: any) => String(e)) : [],
-      produces: Array.isArray(object?.produces) ? object.produces.map((e: any) => String(e)) : [],
+      host: isSet(object.host) ? globalThis.String(object.host) : "",
+      basePath: isSet(object.basePath) ? globalThis.String(object.basePath) : "",
+      schemes: globalThis.Array.isArray(object?.schemes) ? object.schemes.map((e: any) => schemeFromJSON(e)) : [],
+      consumes: globalThis.Array.isArray(object?.consumes) ? object.consumes.map((e: any) => globalThis.String(e)) : [],
+      produces: globalThis.Array.isArray(object?.produces) ? object.produces.map((e: any) => globalThis.String(e)) : [],
       responses: isObject(object.responses)
         ? Object.entries(object.responses).reduce<{ [key: string]: Response }>((acc, [key, value]) => {
           acc[key] = Response.fromJSON(value);
@@ -1360,8 +1360,10 @@ export const Swagger = {
       securityDefinitions: isSet(object.securityDefinitions)
         ? SecurityDefinitions.fromJSON(object.securityDefinitions)
         : undefined,
-      security: Array.isArray(object?.security) ? object.security.map((e: any) => SecurityRequirement.fromJSON(e)) : [],
-      tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => Tag.fromJSON(e)) : [],
+      security: globalThis.Array.isArray(object?.security)
+        ? object.security.map((e: any) => SecurityRequirement.fromJSON(e))
+        : [],
+      tags: globalThis.Array.isArray(object?.tags) ? object.tags.map((e: any) => Tag.fromJSON(e)) : [],
       externalDocs: isSet(object.externalDocs) ? ExternalDocumentation.fromJSON(object.externalDocs) : undefined,
       extensions: isObject(object.extensions)
         ? Object.entries(object.extensions).reduce<{ [key: string]: any | undefined }>((acc, [key, value]) => {
@@ -1517,7 +1519,7 @@ export const Swagger_ResponsesEntry = {
 
   fromJSON(object: any): Swagger_ResponsesEntry {
     return {
-      key: isSet(object.key) ? String(object.key) : "",
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
       value: isSet(object.value) ? Response.fromJSON(object.value) : undefined,
     };
   },
@@ -1592,7 +1594,10 @@ export const Swagger_ExtensionsEntry = {
   },
 
   fromJSON(object: any): Swagger_ExtensionsEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object?.value) ? object.value : undefined };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object?.value) ? object.value : undefined,
+    };
   },
 
   toJSON(message: Swagger_ExtensionsEntry): unknown {
@@ -1808,22 +1813,24 @@ export const Operation = {
 
   fromJSON(object: any): Operation {
     return {
-      tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => String(e)) : [],
-      summary: isSet(object.summary) ? String(object.summary) : "",
-      description: isSet(object.description) ? String(object.description) : "",
+      tags: globalThis.Array.isArray(object?.tags) ? object.tags.map((e: any) => globalThis.String(e)) : [],
+      summary: isSet(object.summary) ? globalThis.String(object.summary) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
       externalDocs: isSet(object.externalDocs) ? ExternalDocumentation.fromJSON(object.externalDocs) : undefined,
-      operationId: isSet(object.operationId) ? String(object.operationId) : "",
-      consumes: Array.isArray(object?.consumes) ? object.consumes.map((e: any) => String(e)) : [],
-      produces: Array.isArray(object?.produces) ? object.produces.map((e: any) => String(e)) : [],
+      operationId: isSet(object.operationId) ? globalThis.String(object.operationId) : "",
+      consumes: globalThis.Array.isArray(object?.consumes) ? object.consumes.map((e: any) => globalThis.String(e)) : [],
+      produces: globalThis.Array.isArray(object?.produces) ? object.produces.map((e: any) => globalThis.String(e)) : [],
       responses: isObject(object.responses)
         ? Object.entries(object.responses).reduce<{ [key: string]: Response }>((acc, [key, value]) => {
           acc[key] = Response.fromJSON(value);
           return acc;
         }, {})
         : {},
-      schemes: Array.isArray(object?.schemes) ? object.schemes.map((e: any) => schemeFromJSON(e)) : [],
-      deprecated: isSet(object.deprecated) ? Boolean(object.deprecated) : false,
-      security: Array.isArray(object?.security) ? object.security.map((e: any) => SecurityRequirement.fromJSON(e)) : [],
+      schemes: globalThis.Array.isArray(object?.schemes) ? object.schemes.map((e: any) => schemeFromJSON(e)) : [],
+      deprecated: isSet(object.deprecated) ? globalThis.Boolean(object.deprecated) : false,
+      security: globalThis.Array.isArray(object?.security)
+        ? object.security.map((e: any) => SecurityRequirement.fromJSON(e))
+        : [],
       extensions: isObject(object.extensions)
         ? Object.entries(object.extensions).reduce<{ [key: string]: any | undefined }>((acc, [key, value]) => {
           acc[key] = value as any | undefined;
@@ -1979,7 +1986,7 @@ export const Operation_ResponsesEntry = {
 
   fromJSON(object: any): Operation_ResponsesEntry {
     return {
-      key: isSet(object.key) ? String(object.key) : "",
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
       value: isSet(object.value) ? Response.fromJSON(object.value) : undefined,
     };
   },
@@ -2054,7 +2061,10 @@ export const Operation_ExtensionsEntry = {
   },
 
   fromJSON(object: any): Operation_ExtensionsEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object?.value) ? object.value : undefined };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object?.value) ? object.value : undefined,
+    };
   },
 
   toJSON(message: Operation_ExtensionsEntry): unknown {
@@ -2116,7 +2126,9 @@ export const Parameters = {
 
   fromJSON(object: any): Parameters {
     return {
-      headers: Array.isArray(object?.headers) ? object.headers.map((e: any) => HeaderParameter.fromJSON(e)) : [],
+      headers: globalThis.Array.isArray(object?.headers)
+        ? object.headers.map((e: any) => HeaderParameter.fromJSON(e))
+        : [],
     };
   },
 
@@ -2215,11 +2227,11 @@ export const HeaderParameter = {
 
   fromJSON(object: any): HeaderParameter {
     return {
-      name: isSet(object.name) ? String(object.name) : "",
-      description: isSet(object.description) ? String(object.description) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
       type: isSet(object.type) ? headerParameter_TypeFromJSON(object.type) : 0,
-      format: isSet(object.format) ? String(object.format) : "",
-      required: isSet(object.required) ? Boolean(object.required) : false,
+      format: isSet(object.format) ? globalThis.String(object.format) : "",
+      required: isSet(object.required) ? globalThis.Boolean(object.required) : false,
     };
   },
 
@@ -2334,11 +2346,11 @@ export const Header = {
 
   fromJSON(object: any): Header {
     return {
-      description: isSet(object.description) ? String(object.description) : "",
-      type: isSet(object.type) ? String(object.type) : "",
-      format: isSet(object.format) ? String(object.format) : "",
-      default: isSet(object.default) ? String(object.default) : "",
-      pattern: isSet(object.pattern) ? String(object.pattern) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
+      type: isSet(object.type) ? globalThis.String(object.type) : "",
+      format: isSet(object.format) ? globalThis.String(object.format) : "",
+      default: isSet(object.default) ? globalThis.String(object.default) : "",
+      pattern: isSet(object.pattern) ? globalThis.String(object.pattern) : "",
     };
   },
 
@@ -2464,7 +2476,7 @@ export const Response = {
 
   fromJSON(object: any): Response {
     return {
-      description: isSet(object.description) ? String(object.description) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
       schema: isSet(object.schema) ? Schema.fromJSON(object.schema) : undefined,
       headers: isObject(object.headers)
         ? Object.entries(object.headers).reduce<{ [key: string]: Header }>((acc, [key, value]) => {
@@ -2542,7 +2554,7 @@ export const Response = {
     }, {});
     message.examples = Object.entries(object.examples ?? {}).reduce<{ [key: string]: string }>((acc, [key, value]) => {
       if (value !== undefined) {
-        acc[key] = String(value);
+        acc[key] = globalThis.String(value);
       }
       return acc;
     }, {});
@@ -2606,7 +2618,7 @@ export const Response_HeadersEntry = {
 
   fromJSON(object: any): Response_HeadersEntry {
     return {
-      key: isSet(object.key) ? String(object.key) : "",
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
       value: isSet(object.value) ? Header.fromJSON(object.value) : undefined,
     };
   },
@@ -2681,7 +2693,10 @@ export const Response_ExamplesEntry = {
   },
 
   fromJSON(object: any): Response_ExamplesEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? globalThis.String(object.value) : "",
+    };
   },
 
   toJSON(message: Response_ExamplesEntry): unknown {
@@ -2752,7 +2767,10 @@ export const Response_ExtensionsEntry = {
   },
 
   fromJSON(object: any): Response_ExtensionsEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object?.value) ? object.value : undefined };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object?.value) ? object.value : undefined,
+    };
   },
 
   toJSON(message: Response_ExtensionsEntry): unknown {
@@ -2887,12 +2905,12 @@ export const Info = {
 
   fromJSON(object: any): Info {
     return {
-      title: isSet(object.title) ? String(object.title) : "",
-      description: isSet(object.description) ? String(object.description) : "",
-      termsOfService: isSet(object.termsOfService) ? String(object.termsOfService) : "",
+      title: isSet(object.title) ? globalThis.String(object.title) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
+      termsOfService: isSet(object.termsOfService) ? globalThis.String(object.termsOfService) : "",
       contact: isSet(object.contact) ? Contact.fromJSON(object.contact) : undefined,
       license: isSet(object.license) ? License.fromJSON(object.license) : undefined,
-      version: isSet(object.version) ? String(object.version) : "",
+      version: isSet(object.version) ? globalThis.String(object.version) : "",
       extensions: isObject(object.extensions)
         ? Object.entries(object.extensions).reduce<{ [key: string]: any | undefined }>((acc, [key, value]) => {
           acc[key] = value as any | undefined;
@@ -3008,7 +3026,10 @@ export const Info_ExtensionsEntry = {
   },
 
   fromJSON(object: any): Info_ExtensionsEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object?.value) ? object.value : undefined };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object?.value) ? object.value : undefined,
+    };
   },
 
   toJSON(message: Info_ExtensionsEntry): unknown {
@@ -3090,9 +3111,9 @@ export const Contact = {
 
   fromJSON(object: any): Contact {
     return {
-      name: isSet(object.name) ? String(object.name) : "",
-      url: isSet(object.url) ? String(object.url) : "",
-      email: isSet(object.email) ? String(object.email) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      url: isSet(object.url) ? globalThis.String(object.url) : "",
+      email: isSet(object.email) ? globalThis.String(object.email) : "",
     };
   },
 
@@ -3168,7 +3189,10 @@ export const License = {
   },
 
   fromJSON(object: any): License {
-    return { name: isSet(object.name) ? String(object.name) : "", url: isSet(object.url) ? String(object.url) : "" };
+    return {
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      url: isSet(object.url) ? globalThis.String(object.url) : "",
+    };
   },
 
   toJSON(message: License): unknown {
@@ -3240,8 +3264,8 @@ export const ExternalDocumentation = {
 
   fromJSON(object: any): ExternalDocumentation {
     return {
-      description: isSet(object.description) ? String(object.description) : "",
-      url: isSet(object.url) ? String(object.url) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
+      url: isSet(object.url) ? globalThis.String(object.url) : "",
     };
   },
 
@@ -3345,10 +3369,10 @@ export const Schema = {
   fromJSON(object: any): Schema {
     return {
       jsonSchema: isSet(object.jsonSchema) ? JSONSchema.fromJSON(object.jsonSchema) : undefined,
-      discriminator: isSet(object.discriminator) ? String(object.discriminator) : "",
-      readOnly: isSet(object.readOnly) ? Boolean(object.readOnly) : false,
+      discriminator: isSet(object.discriminator) ? globalThis.String(object.discriminator) : "",
+      readOnly: isSet(object.readOnly) ? globalThis.Boolean(object.readOnly) : false,
       externalDocs: isSet(object.externalDocs) ? ExternalDocumentation.fromJSON(object.externalDocs) : undefined,
-      example: isSet(object.example) ? String(object.example) : "",
+      example: isSet(object.example) ? globalThis.String(object.example) : "",
     };
   },
 
@@ -3721,30 +3745,32 @@ export const JSONSchema = {
 
   fromJSON(object: any): JSONSchema {
     return {
-      ref: isSet(object.ref) ? String(object.ref) : "",
-      title: isSet(object.title) ? String(object.title) : "",
-      description: isSet(object.description) ? String(object.description) : "",
-      default: isSet(object.default) ? String(object.default) : "",
-      readOnly: isSet(object.readOnly) ? Boolean(object.readOnly) : false,
-      example: isSet(object.example) ? String(object.example) : "",
-      multipleOf: isSet(object.multipleOf) ? Number(object.multipleOf) : 0,
-      maximum: isSet(object.maximum) ? Number(object.maximum) : 0,
-      exclusiveMaximum: isSet(object.exclusiveMaximum) ? Boolean(object.exclusiveMaximum) : false,
-      minimum: isSet(object.minimum) ? Number(object.minimum) : 0,
-      exclusiveMinimum: isSet(object.exclusiveMinimum) ? Boolean(object.exclusiveMinimum) : false,
-      maxLength: isSet(object.maxLength) ? Number(object.maxLength) : 0,
-      minLength: isSet(object.minLength) ? Number(object.minLength) : 0,
-      pattern: isSet(object.pattern) ? String(object.pattern) : "",
-      maxItems: isSet(object.maxItems) ? Number(object.maxItems) : 0,
-      minItems: isSet(object.minItems) ? Number(object.minItems) : 0,
-      uniqueItems: isSet(object.uniqueItems) ? Boolean(object.uniqueItems) : false,
-      maxProperties: isSet(object.maxProperties) ? Number(object.maxProperties) : 0,
-      minProperties: isSet(object.minProperties) ? Number(object.minProperties) : 0,
-      required: Array.isArray(object?.required) ? object.required.map((e: any) => String(e)) : [],
-      array: Array.isArray(object?.array) ? object.array.map((e: any) => String(e)) : [],
-      type: Array.isArray(object?.type) ? object.type.map((e: any) => jSONSchema_JSONSchemaSimpleTypesFromJSON(e)) : [],
-      format: isSet(object.format) ? String(object.format) : "",
-      enum: Array.isArray(object?.enum) ? object.enum.map((e: any) => String(e)) : [],
+      ref: isSet(object.ref) ? globalThis.String(object.ref) : "",
+      title: isSet(object.title) ? globalThis.String(object.title) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
+      default: isSet(object.default) ? globalThis.String(object.default) : "",
+      readOnly: isSet(object.readOnly) ? globalThis.Boolean(object.readOnly) : false,
+      example: isSet(object.example) ? globalThis.String(object.example) : "",
+      multipleOf: isSet(object.multipleOf) ? globalThis.Number(object.multipleOf) : 0,
+      maximum: isSet(object.maximum) ? globalThis.Number(object.maximum) : 0,
+      exclusiveMaximum: isSet(object.exclusiveMaximum) ? globalThis.Boolean(object.exclusiveMaximum) : false,
+      minimum: isSet(object.minimum) ? globalThis.Number(object.minimum) : 0,
+      exclusiveMinimum: isSet(object.exclusiveMinimum) ? globalThis.Boolean(object.exclusiveMinimum) : false,
+      maxLength: isSet(object.maxLength) ? globalThis.Number(object.maxLength) : 0,
+      minLength: isSet(object.minLength) ? globalThis.Number(object.minLength) : 0,
+      pattern: isSet(object.pattern) ? globalThis.String(object.pattern) : "",
+      maxItems: isSet(object.maxItems) ? globalThis.Number(object.maxItems) : 0,
+      minItems: isSet(object.minItems) ? globalThis.Number(object.minItems) : 0,
+      uniqueItems: isSet(object.uniqueItems) ? globalThis.Boolean(object.uniqueItems) : false,
+      maxProperties: isSet(object.maxProperties) ? globalThis.Number(object.maxProperties) : 0,
+      minProperties: isSet(object.minProperties) ? globalThis.Number(object.minProperties) : 0,
+      required: globalThis.Array.isArray(object?.required) ? object.required.map((e: any) => globalThis.String(e)) : [],
+      array: globalThis.Array.isArray(object?.array) ? object.array.map((e: any) => globalThis.String(e)) : [],
+      type: globalThis.Array.isArray(object?.type)
+        ? object.type.map((e: any) => jSONSchema_JSONSchemaSimpleTypesFromJSON(e))
+        : [],
+      format: isSet(object.format) ? globalThis.String(object.format) : "",
+      enum: globalThis.Array.isArray(object?.enum) ? object.enum.map((e: any) => globalThis.String(e)) : [],
       fieldConfiguration: isSet(object.fieldConfiguration)
         ? JSONSchema_FieldConfiguration.fromJSON(object.fieldConfiguration)
         : undefined,
@@ -3927,7 +3953,7 @@ export const JSONSchema_FieldConfiguration = {
   },
 
   fromJSON(object: any): JSONSchema_FieldConfiguration {
-    return { pathParamName: isSet(object.pathParamName) ? String(object.pathParamName) : "" };
+    return { pathParamName: isSet(object.pathParamName) ? globalThis.String(object.pathParamName) : "" };
   },
 
   toJSON(message: JSONSchema_FieldConfiguration): unknown {
@@ -3996,7 +4022,10 @@ export const JSONSchema_ExtensionsEntry = {
   },
 
   fromJSON(object: any): JSONSchema_ExtensionsEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object?.value) ? object.value : undefined };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object?.value) ? object.value : undefined,
+    };
   },
 
   toJSON(message: JSONSchema_ExtensionsEntry): unknown {
@@ -4093,8 +4122,8 @@ export const Tag = {
 
   fromJSON(object: any): Tag {
     return {
-      name: isSet(object.name) ? String(object.name) : "",
-      description: isSet(object.description) ? String(object.description) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
       externalDocs: isSet(object.externalDocs) ? ExternalDocumentation.fromJSON(object.externalDocs) : undefined,
       extensions: isObject(object.extensions)
         ? Object.entries(object.extensions).reduce<{ [key: string]: any | undefined }>((acc, [key, value]) => {
@@ -4197,7 +4226,10 @@ export const Tag_ExtensionsEntry = {
   },
 
   fromJSON(object: any): Tag_ExtensionsEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object?.value) ? object.value : undefined };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object?.value) ? object.value : undefined,
+    };
   },
 
   toJSON(message: Tag_ExtensionsEntry): unknown {
@@ -4350,7 +4382,7 @@ export const SecurityDefinitions_SecurityEntry = {
 
   fromJSON(object: any): SecurityDefinitions_SecurityEntry {
     return {
-      key: isSet(object.key) ? String(object.key) : "",
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
       value: isSet(object.value) ? SecurityScheme.fromJSON(object.value) : undefined,
     };
   },
@@ -4516,12 +4548,12 @@ export const SecurityScheme = {
   fromJSON(object: any): SecurityScheme {
     return {
       type: isSet(object.type) ? securityScheme_TypeFromJSON(object.type) : 0,
-      description: isSet(object.description) ? String(object.description) : "",
-      name: isSet(object.name) ? String(object.name) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
       in: isSet(object.in) ? securityScheme_InFromJSON(object.in) : 0,
       flow: isSet(object.flow) ? securityScheme_FlowFromJSON(object.flow) : 0,
-      authorizationUrl: isSet(object.authorizationUrl) ? String(object.authorizationUrl) : "",
-      tokenUrl: isSet(object.tokenUrl) ? String(object.tokenUrl) : "",
+      authorizationUrl: isSet(object.authorizationUrl) ? globalThis.String(object.authorizationUrl) : "",
+      tokenUrl: isSet(object.tokenUrl) ? globalThis.String(object.tokenUrl) : "",
       scopes: isSet(object.scopes) ? Scopes.fromJSON(object.scopes) : undefined,
       extensions: isObject(object.extensions)
         ? Object.entries(object.extensions).reduce<{ [key: string]: any | undefined }>((acc, [key, value]) => {
@@ -4644,7 +4676,10 @@ export const SecurityScheme_ExtensionsEntry = {
   },
 
   fromJSON(object: any): SecurityScheme_ExtensionsEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object?.value) ? object.value : undefined };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object?.value) ? object.value : undefined,
+    };
   },
 
   toJSON(message: SecurityScheme_ExtensionsEntry): unknown {
@@ -4790,7 +4825,7 @@ export const SecurityRequirement_SecurityRequirementValue = {
   },
 
   fromJSON(object: any): SecurityRequirement_SecurityRequirementValue {
-    return { scope: Array.isArray(object?.scope) ? object.scope.map((e: any) => String(e)) : [] };
+    return { scope: globalThis.Array.isArray(object?.scope) ? object.scope.map((e: any) => globalThis.String(e)) : [] };
   },
 
   toJSON(message: SecurityRequirement_SecurityRequirementValue): unknown {
@@ -4862,7 +4897,7 @@ export const SecurityRequirement_SecurityRequirementEntry = {
 
   fromJSON(object: any): SecurityRequirement_SecurityRequirementEntry {
     return {
-      key: isSet(object.key) ? String(object.key) : "",
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
       value: isSet(object.value) ? SecurityRequirement_SecurityRequirementValue.fromJSON(object.value) : undefined,
     };
   },
@@ -4965,7 +5000,7 @@ export const Scopes = {
     const message = createBaseScopes();
     message.scope = Object.entries(object.scope ?? {}).reduce<{ [key: string]: string }>((acc, [key, value]) => {
       if (value !== undefined) {
-        acc[key] = String(value);
+        acc[key] = globalThis.String(value);
       }
       return acc;
     }, {});
@@ -5019,7 +5054,10 @@ export const Scopes_ScopeEntry = {
   },
 
   fromJSON(object: any): Scopes_ScopeEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? globalThis.String(object.value) : "",
+    };
   },
 
   toJSON(message: Scopes_ScopeEntry): unknown {
@@ -5044,29 +5082,11 @@ export const Scopes_ScopeEntry = {
   },
 };
 
-declare const self: any | undefined;
-declare const window: any | undefined;
-declare const global: any | undefined;
-const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
   : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
@@ -5075,8 +5095,8 @@ export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

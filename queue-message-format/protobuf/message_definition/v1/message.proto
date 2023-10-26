@@ -8,11 +8,18 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/SolomonAIEngineering/backend-core-library/message_queue/generated/message-definition/v1";
 
+
 /*
   DeleteAccountMessageFormat: represents an sqs message format
   for deleting an accoun
 */
 message DeleteAccountMessageFormat {
+  enum ProfileType {
+    PROFILE_TYPE_UNSPECIFIED = 0;
+    PROFILE_TYPE_USER = 1;
+    PROFILE_TYPE_BUSINESS = 2;
+  }
+
   option (gorm.opts) = {
     ormable : true,
   };
@@ -35,6 +42,13 @@ message DeleteAccountMessageFormat {
 
   // user_id id from the vantage point of the user service
   uint64 user_id = 3 [
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+      example: ""
+    }
+  ];
+
+  // the profile type of the given account
+  ProfileType profile_type = 4 [
     (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
       example: ""
     }

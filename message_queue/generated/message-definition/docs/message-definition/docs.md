@@ -17,6 +17,8 @@
 - [message_definition/v1/message.proto](#message_definition_v1_message-proto)
     - [DeleteAccountMessageFormat](#message_definition-v1-DeleteAccountMessageFormat)
   
+    - [DeleteAccountMessageFormat.ProfileType](#message_definition-v1-DeleteAccountMessageFormat-ProfileType)
+  
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -225,12 +227,26 @@ for deleting an accoun
 | authn_id | [uint64](#uint64) |  | authn id which is the id of the account from the vantage point of the authentication service |
 | email | [string](#string) |  | account email Validations: - must be an email and required |
 | user_id | [uint64](#uint64) |  | user_id id from the vantage point of the user service |
+| profile_type | [DeleteAccountMessageFormat.ProfileType](#message_definition-v1-DeleteAccountMessageFormat-ProfileType) |  | the profile type of the given account |
 
 
 
 
 
  
+
+
+<a name="message_definition-v1-DeleteAccountMessageFormat-ProfileType"></a>
+
+### DeleteAccountMessageFormat.ProfileType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PROFILE_TYPE_UNSPECIFIED | 0 |  |
+| PROFILE_TYPE_USER | 1 |  |
+| PROFILE_TYPE_BUSINESS | 2 |  |
+
 
  
 

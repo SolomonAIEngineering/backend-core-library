@@ -22,10 +22,51 @@ export interface DeleteAccountMessageFormat {
   email: string;
   /** user_id id from the vantage point of the user service */
   userId: number;
+  /** the profile type of the given account */
+  profileType: DeleteAccountMessageFormat_ProfileType;
+}
+
+export enum DeleteAccountMessageFormat_ProfileType {
+  PROFILE_TYPE_UNSPECIFIED = 0,
+  PROFILE_TYPE_USER = 1,
+  PROFILE_TYPE_BUSINESS = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function deleteAccountMessageFormat_ProfileTypeFromJSON(object: any): DeleteAccountMessageFormat_ProfileType {
+  switch (object) {
+    case 0:
+    case "PROFILE_TYPE_UNSPECIFIED":
+      return DeleteAccountMessageFormat_ProfileType.PROFILE_TYPE_UNSPECIFIED;
+    case 1:
+    case "PROFILE_TYPE_USER":
+      return DeleteAccountMessageFormat_ProfileType.PROFILE_TYPE_USER;
+    case 2:
+    case "PROFILE_TYPE_BUSINESS":
+      return DeleteAccountMessageFormat_ProfileType.PROFILE_TYPE_BUSINESS;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return DeleteAccountMessageFormat_ProfileType.UNRECOGNIZED;
+  }
+}
+
+export function deleteAccountMessageFormat_ProfileTypeToJSON(object: DeleteAccountMessageFormat_ProfileType): string {
+  switch (object) {
+    case DeleteAccountMessageFormat_ProfileType.PROFILE_TYPE_UNSPECIFIED:
+      return "PROFILE_TYPE_UNSPECIFIED";
+    case DeleteAccountMessageFormat_ProfileType.PROFILE_TYPE_USER:
+      return "PROFILE_TYPE_USER";
+    case DeleteAccountMessageFormat_ProfileType.PROFILE_TYPE_BUSINESS:
+      return "PROFILE_TYPE_BUSINESS";
+    case DeleteAccountMessageFormat_ProfileType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
 }
 
 function createBaseDeleteAccountMessageFormat(): DeleteAccountMessageFormat {
-  return { authnId: 0, email: "", userId: 0 };
+  return { authnId: 0, email: "", userId: 0, profileType: 0 };
 }
 
 export const DeleteAccountMessageFormat = {
@@ -38,6 +79,9 @@ export const DeleteAccountMessageFormat = {
     }
     if (message.userId !== 0) {
       writer.uint32(24).uint64(message.userId);
+    }
+    if (message.profileType !== 0) {
+      writer.uint32(32).int32(message.profileType);
     }
     return writer;
   },
@@ -70,6 +114,13 @@ export const DeleteAccountMessageFormat = {
 
           message.userId = longToNumber(reader.uint64() as Long);
           continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.profileType = reader.int32() as any;
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -81,9 +132,10 @@ export const DeleteAccountMessageFormat = {
 
   fromJSON(object: any): DeleteAccountMessageFormat {
     return {
-      authnId: isSet(object.authnId) ? Number(object.authnId) : 0,
-      email: isSet(object.email) ? String(object.email) : "",
-      userId: isSet(object.userId) ? Number(object.userId) : 0,
+      authnId: isSet(object.authnId) ? globalThis.Number(object.authnId) : 0,
+      email: isSet(object.email) ? globalThis.String(object.email) : "",
+      userId: isSet(object.userId) ? globalThis.Number(object.userId) : 0,
+      profileType: isSet(object.profileType) ? deleteAccountMessageFormat_ProfileTypeFromJSON(object.profileType) : 0,
     };
   },
 
@@ -98,6 +150,9 @@ export const DeleteAccountMessageFormat = {
     if (message.userId !== 0) {
       obj.userId = Math.round(message.userId);
     }
+    if (message.profileType !== 0) {
+      obj.profileType = deleteAccountMessageFormat_ProfileTypeToJSON(message.profileType);
+    }
     return obj;
   },
 
@@ -109,33 +164,16 @@ export const DeleteAccountMessageFormat = {
     message.authnId = object.authnId ?? 0;
     message.email = object.email ?? "";
     message.userId = object.userId ?? 0;
+    message.profileType = object.profileType ?? 0;
     return message;
   },
 };
 
-declare const self: any | undefined;
-declare const window: any | undefined;
-declare const global: any | undefined;
-const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
   : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
@@ -144,8 +182,8 @@ export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

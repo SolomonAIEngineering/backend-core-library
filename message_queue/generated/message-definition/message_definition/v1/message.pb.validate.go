@@ -73,6 +73,8 @@ func (m *DeleteAccountMessageFormat) validate(all bool) error {
 
 	// no validation rules for UserId
 
+	// no validation rules for ProfileType
+
 	if len(errors) > 0 {
 		return DeleteAccountMessageFormatMultiError(errors)
 	}

@@ -230,10 +230,10 @@ export const GormMessageOptions = {
 
   fromJSON(object: any): GormMessageOptions {
     return {
-      ormable: isSet(object.ormable) ? Boolean(object.ormable) : false,
-      include: Array.isArray(object?.include) ? object.include.map((e: any) => ExtraField.fromJSON(e)) : [],
-      table: isSet(object.table) ? String(object.table) : "",
-      multiAccount: isSet(object.multiAccount) ? Boolean(object.multiAccount) : false,
+      ormable: isSet(object.ormable) ? globalThis.Boolean(object.ormable) : false,
+      include: globalThis.Array.isArray(object?.include) ? object.include.map((e: any) => ExtraField.fromJSON(e)) : [],
+      table: isSet(object.table) ? globalThis.String(object.table) : "",
+      multiAccount: isSet(object.multiAccount) ? globalThis.Boolean(object.multiAccount) : false,
     };
   },
 
@@ -334,10 +334,10 @@ export const ExtraField = {
 
   fromJSON(object: any): ExtraField {
     return {
-      type: isSet(object.type) ? String(object.type) : "",
-      name: isSet(object.name) ? String(object.name) : "",
+      type: isSet(object.type) ? globalThis.String(object.type) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
       tag: isSet(object.tag) ? GormTag.fromJSON(object.tag) : undefined,
-      package: isSet(object.package) ? String(object.package) : "",
+      package: isSet(object.package) ? globalThis.String(object.package) : "",
     };
   },
 
@@ -477,12 +477,12 @@ export const GormFieldOptions = {
   fromJSON(object: any): GormFieldOptions {
     return {
       tag: isSet(object.tag) ? GormTag.fromJSON(object.tag) : undefined,
-      drop: isSet(object.drop) ? Boolean(object.drop) : false,
+      drop: isSet(object.drop) ? globalThis.Boolean(object.drop) : false,
       hasOne: isSet(object.hasOne) ? HasOneOptions.fromJSON(object.hasOne) : undefined,
       belongsTo: isSet(object.belongsTo) ? BelongsToOptions.fromJSON(object.belongsTo) : undefined,
       hasMany: isSet(object.hasMany) ? HasManyOptions.fromJSON(object.hasMany) : undefined,
       manyToMany: isSet(object.manyToMany) ? ManyToManyOptions.fromJSON(object.manyToMany) : undefined,
-      referenceOf: isSet(object.referenceOf) ? String(object.referenceOf) : "",
+      referenceOf: isSet(object.referenceOf) ? globalThis.String(object.referenceOf) : "",
     };
   },
 
@@ -828,38 +828,38 @@ export const GormTag = {
 
   fromJSON(object: any): GormTag {
     return {
-      column: isSet(object.column) ? String(object.column) : "",
-      type: isSet(object.type) ? String(object.type) : "",
-      size: isSet(object.size) ? Number(object.size) : 0,
-      precision: isSet(object.precision) ? Number(object.precision) : 0,
-      primaryKey: isSet(object.primaryKey) ? Boolean(object.primaryKey) : false,
-      unique: isSet(object.unique) ? Boolean(object.unique) : false,
-      default: isSet(object.default) ? String(object.default) : "",
-      notNull: isSet(object.notNull) ? Boolean(object.notNull) : false,
-      autoIncrement: isSet(object.autoIncrement) ? Boolean(object.autoIncrement) : false,
-      index: isSet(object.index) ? String(object.index) : "",
-      uniqueIndex: isSet(object.uniqueIndex) ? String(object.uniqueIndex) : "",
-      embedded: isSet(object.embedded) ? Boolean(object.embedded) : false,
-      embeddedPrefix: isSet(object.embeddedPrefix) ? String(object.embeddedPrefix) : "",
-      ignore: isSet(object.ignore) ? Boolean(object.ignore) : false,
-      foreignkey: isSet(object.foreignkey) ? String(object.foreignkey) : "",
-      associationForeignkey: isSet(object.associationForeignkey) ? String(object.associationForeignkey) : "",
-      manyToMany: isSet(object.manyToMany) ? String(object.manyToMany) : "",
-      jointableForeignkey: isSet(object.jointableForeignkey) ? String(object.jointableForeignkey) : "",
+      column: isSet(object.column) ? globalThis.String(object.column) : "",
+      type: isSet(object.type) ? globalThis.String(object.type) : "",
+      size: isSet(object.size) ? globalThis.Number(object.size) : 0,
+      precision: isSet(object.precision) ? globalThis.Number(object.precision) : 0,
+      primaryKey: isSet(object.primaryKey) ? globalThis.Boolean(object.primaryKey) : false,
+      unique: isSet(object.unique) ? globalThis.Boolean(object.unique) : false,
+      default: isSet(object.default) ? globalThis.String(object.default) : "",
+      notNull: isSet(object.notNull) ? globalThis.Boolean(object.notNull) : false,
+      autoIncrement: isSet(object.autoIncrement) ? globalThis.Boolean(object.autoIncrement) : false,
+      index: isSet(object.index) ? globalThis.String(object.index) : "",
+      uniqueIndex: isSet(object.uniqueIndex) ? globalThis.String(object.uniqueIndex) : "",
+      embedded: isSet(object.embedded) ? globalThis.Boolean(object.embedded) : false,
+      embeddedPrefix: isSet(object.embeddedPrefix) ? globalThis.String(object.embeddedPrefix) : "",
+      ignore: isSet(object.ignore) ? globalThis.Boolean(object.ignore) : false,
+      foreignkey: isSet(object.foreignkey) ? globalThis.String(object.foreignkey) : "",
+      associationForeignkey: isSet(object.associationForeignkey) ? globalThis.String(object.associationForeignkey) : "",
+      manyToMany: isSet(object.manyToMany) ? globalThis.String(object.manyToMany) : "",
+      jointableForeignkey: isSet(object.jointableForeignkey) ? globalThis.String(object.jointableForeignkey) : "",
       associationJointableForeignkey: isSet(object.associationJointableForeignkey)
-        ? String(object.associationJointableForeignkey)
+        ? globalThis.String(object.associationJointableForeignkey)
         : "",
       disableAssociationAutoupdate: isSet(object.disableAssociationAutoupdate)
-        ? Boolean(object.disableAssociationAutoupdate)
+        ? globalThis.Boolean(object.disableAssociationAutoupdate)
         : false,
       disableAssociationAutocreate: isSet(object.disableAssociationAutocreate)
-        ? Boolean(object.disableAssociationAutocreate)
+        ? globalThis.Boolean(object.disableAssociationAutocreate)
         : false,
       associationSaveReference: isSet(object.associationSaveReference)
-        ? Boolean(object.associationSaveReference)
+        ? globalThis.Boolean(object.associationSaveReference)
         : false,
-      preload: isSet(object.preload) ? Boolean(object.preload) : false,
-      serializer: isSet(object.serializer) ? String(object.serializer) : "",
+      preload: isSet(object.preload) ? globalThis.Boolean(object.preload) : false,
+      serializer: isSet(object.serializer) ? globalThis.String(object.serializer) : "",
     };
   },
 
@@ -1111,22 +1111,22 @@ export const HasOneOptions = {
 
   fromJSON(object: any): HasOneOptions {
     return {
-      foreignkey: isSet(object.foreignkey) ? String(object.foreignkey) : "",
+      foreignkey: isSet(object.foreignkey) ? globalThis.String(object.foreignkey) : "",
       foreignkeyTag: isSet(object.foreignkeyTag) ? GormTag.fromJSON(object.foreignkeyTag) : undefined,
-      associationForeignkey: isSet(object.associationForeignkey) ? String(object.associationForeignkey) : "",
+      associationForeignkey: isSet(object.associationForeignkey) ? globalThis.String(object.associationForeignkey) : "",
       disableAssociationAutoupdate: isSet(object.disableAssociationAutoupdate)
-        ? Boolean(object.disableAssociationAutoupdate)
+        ? globalThis.Boolean(object.disableAssociationAutoupdate)
         : false,
       disableAssociationAutocreate: isSet(object.disableAssociationAutocreate)
-        ? Boolean(object.disableAssociationAutocreate)
+        ? globalThis.Boolean(object.disableAssociationAutocreate)
         : false,
       associationSaveReference: isSet(object.associationSaveReference)
-        ? Boolean(object.associationSaveReference)
+        ? globalThis.Boolean(object.associationSaveReference)
         : false,
-      preload: isSet(object.preload) ? Boolean(object.preload) : false,
-      replace: isSet(object.replace) ? Boolean(object.replace) : false,
-      append: isSet(object.append) ? Boolean(object.append) : false,
-      clear: isSet(object.clear) ? Boolean(object.clear) : false,
+      preload: isSet(object.preload) ? globalThis.Boolean(object.preload) : false,
+      replace: isSet(object.replace) ? globalThis.Boolean(object.replace) : false,
+      append: isSet(object.append) ? globalThis.Boolean(object.append) : false,
+      clear: isSet(object.clear) ? globalThis.Boolean(object.clear) : false,
     };
   },
 
@@ -1291,19 +1291,19 @@ export const BelongsToOptions = {
 
   fromJSON(object: any): BelongsToOptions {
     return {
-      foreignkey: isSet(object.foreignkey) ? String(object.foreignkey) : "",
+      foreignkey: isSet(object.foreignkey) ? globalThis.String(object.foreignkey) : "",
       foreignkeyTag: isSet(object.foreignkeyTag) ? GormTag.fromJSON(object.foreignkeyTag) : undefined,
-      associationForeignkey: isSet(object.associationForeignkey) ? String(object.associationForeignkey) : "",
+      associationForeignkey: isSet(object.associationForeignkey) ? globalThis.String(object.associationForeignkey) : "",
       disableAssociationAutoupdate: isSet(object.disableAssociationAutoupdate)
-        ? Boolean(object.disableAssociationAutoupdate)
+        ? globalThis.Boolean(object.disableAssociationAutoupdate)
         : false,
       disableAssociationAutocreate: isSet(object.disableAssociationAutocreate)
-        ? Boolean(object.disableAssociationAutocreate)
+        ? globalThis.Boolean(object.disableAssociationAutocreate)
         : false,
       associationSaveReference: isSet(object.associationSaveReference)
-        ? Boolean(object.associationSaveReference)
+        ? globalThis.Boolean(object.associationSaveReference)
         : false,
-      preload: isSet(object.preload) ? Boolean(object.preload) : false,
+      preload: isSet(object.preload) ? globalThis.Boolean(object.preload) : false,
     };
   },
 
@@ -1511,24 +1511,24 @@ export const HasManyOptions = {
 
   fromJSON(object: any): HasManyOptions {
     return {
-      foreignkey: isSet(object.foreignkey) ? String(object.foreignkey) : "",
+      foreignkey: isSet(object.foreignkey) ? globalThis.String(object.foreignkey) : "",
       foreignkeyTag: isSet(object.foreignkeyTag) ? GormTag.fromJSON(object.foreignkeyTag) : undefined,
-      associationForeignkey: isSet(object.associationForeignkey) ? String(object.associationForeignkey) : "",
-      positionField: isSet(object.positionField) ? String(object.positionField) : "",
+      associationForeignkey: isSet(object.associationForeignkey) ? globalThis.String(object.associationForeignkey) : "",
+      positionField: isSet(object.positionField) ? globalThis.String(object.positionField) : "",
       positionFieldTag: isSet(object.positionFieldTag) ? GormTag.fromJSON(object.positionFieldTag) : undefined,
       disableAssociationAutoupdate: isSet(object.disableAssociationAutoupdate)
-        ? Boolean(object.disableAssociationAutoupdate)
+        ? globalThis.Boolean(object.disableAssociationAutoupdate)
         : false,
       disableAssociationAutocreate: isSet(object.disableAssociationAutocreate)
-        ? Boolean(object.disableAssociationAutocreate)
+        ? globalThis.Boolean(object.disableAssociationAutocreate)
         : false,
       associationSaveReference: isSet(object.associationSaveReference)
-        ? Boolean(object.associationSaveReference)
+        ? globalThis.Boolean(object.associationSaveReference)
         : false,
-      preload: isSet(object.preload) ? Boolean(object.preload) : false,
-      replace: isSet(object.replace) ? Boolean(object.replace) : false,
-      append: isSet(object.append) ? Boolean(object.append) : false,
-      clear: isSet(object.clear) ? Boolean(object.clear) : false,
+      preload: isSet(object.preload) ? globalThis.Boolean(object.preload) : false,
+      replace: isSet(object.replace) ? globalThis.Boolean(object.replace) : false,
+      append: isSet(object.append) ? globalThis.Boolean(object.append) : false,
+      clear: isSet(object.clear) ? globalThis.Boolean(object.clear) : false,
     };
   },
 
@@ -1758,26 +1758,26 @@ export const ManyToManyOptions = {
 
   fromJSON(object: any): ManyToManyOptions {
     return {
-      jointable: isSet(object.jointable) ? String(object.jointable) : "",
-      foreignkey: isSet(object.foreignkey) ? String(object.foreignkey) : "",
-      jointableForeignkey: isSet(object.jointableForeignkey) ? String(object.jointableForeignkey) : "",
-      associationForeignkey: isSet(object.associationForeignkey) ? String(object.associationForeignkey) : "",
+      jointable: isSet(object.jointable) ? globalThis.String(object.jointable) : "",
+      foreignkey: isSet(object.foreignkey) ? globalThis.String(object.foreignkey) : "",
+      jointableForeignkey: isSet(object.jointableForeignkey) ? globalThis.String(object.jointableForeignkey) : "",
+      associationForeignkey: isSet(object.associationForeignkey) ? globalThis.String(object.associationForeignkey) : "",
       associationJointableForeignkey: isSet(object.associationJointableForeignkey)
-        ? String(object.associationJointableForeignkey)
+        ? globalThis.String(object.associationJointableForeignkey)
         : "",
       disableAssociationAutoupdate: isSet(object.disableAssociationAutoupdate)
-        ? Boolean(object.disableAssociationAutoupdate)
+        ? globalThis.Boolean(object.disableAssociationAutoupdate)
         : false,
       disableAssociationAutocreate: isSet(object.disableAssociationAutocreate)
-        ? Boolean(object.disableAssociationAutocreate)
+        ? globalThis.Boolean(object.disableAssociationAutocreate)
         : false,
       associationSaveReference: isSet(object.associationSaveReference)
-        ? Boolean(object.associationSaveReference)
+        ? globalThis.Boolean(object.associationSaveReference)
         : false,
-      preload: isSet(object.preload) ? Boolean(object.preload) : false,
-      replace: isSet(object.replace) ? Boolean(object.replace) : false,
-      append: isSet(object.append) ? Boolean(object.append) : false,
-      clear: isSet(object.clear) ? Boolean(object.clear) : false,
+      preload: isSet(object.preload) ? globalThis.Boolean(object.preload) : false,
+      replace: isSet(object.replace) ? globalThis.Boolean(object.replace) : false,
+      append: isSet(object.append) ? globalThis.Boolean(object.append) : false,
+      clear: isSet(object.clear) ? globalThis.Boolean(object.clear) : false,
     };
   },
 
@@ -1900,9 +1900,9 @@ export const AutoServerOptions = {
 
   fromJSON(object: any): AutoServerOptions {
     return {
-      autogen: isSet(object.autogen) ? Boolean(object.autogen) : false,
-      txnMiddleware: isSet(object.txnMiddleware) ? Boolean(object.txnMiddleware) : false,
-      withTracing: isSet(object.withTracing) ? Boolean(object.withTracing) : false,
+      autogen: isSet(object.autogen) ? globalThis.Boolean(object.autogen) : false,
+      txnMiddleware: isSet(object.txnMiddleware) ? globalThis.Boolean(object.txnMiddleware) : false,
+      withTracing: isSet(object.withTracing) ? globalThis.Boolean(object.withTracing) : false,
     };
   },
 
@@ -1968,7 +1968,7 @@ export const MethodOptions = {
   },
 
   fromJSON(object: any): MethodOptions {
-    return { objectType: isSet(object.objectType) ? String(object.objectType) : "" };
+    return { objectType: isSet(object.objectType) ? globalThis.String(object.objectType) : "" };
   },
 
   toJSON(message: MethodOptions): unknown {
@@ -1992,7 +1992,8 @@ export const MethodOptions = {
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
   : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
