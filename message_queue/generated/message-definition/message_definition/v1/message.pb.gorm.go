@@ -2,6 +2,7 @@ package message_definitionv1
 
 import (
 	context "context"
+
 	gorm1 "github.com/infobloxopen/atlas-app-toolkit/gorm"
 	errors "github.com/infobloxopen/protoc-gen-gorm/errors"
 	gorm "github.com/jinzhu/gorm"

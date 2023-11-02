@@ -105,8 +105,8 @@ func (c *ConsumerClient) poll() {
 		workerTokens <- true
 	}
 
-	// Create a new ticker that triggers every 60 seconds
-	ticker := time.NewTicker(60 * time.Second)
+	// Create a new ticker that triggers every 5 minute
+	ticker := time.NewTicker(5 * time.Minute)
 	defer ticker.Stop() // the ticker when the function exits
 
 	for {
