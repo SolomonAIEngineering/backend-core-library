@@ -171,6 +171,7 @@ func (c *ConsumerClient) poll() {
 		default:
 			// just log
 			c.logger.Info("Waiting for messages")
+			time.Sleep(60 * time.Second)
 		}
 	}
 }
