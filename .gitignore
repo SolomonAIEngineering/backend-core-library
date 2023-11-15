@@ -19,3 +19,6 @@
 
 # Go workspace file
 go.work
+.tools/gocovmerge
+coverage.html
+coverage.txt

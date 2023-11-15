@@ -85,12 +85,11 @@ require (
 	github.com/klauspost/compress v1.16.5 // indirect
 	github.com/lib/pq v1.3.1-0.20200116171513-9eb3fc897d6f // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
+	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe // indirect
-	github.com/newrelic/csec-go-agent v0.4.0 // indirect
 	github.com/newrelic/go-agent/v3/integrations/nrsecurityagent v1.1.2 // indirect
-	github.com/newrelic/go-agent/v3/integrations/nrsqlite3 v1.2.0 // indirect
 	github.com/paulmach/orb v0.9.0 // indirect
 	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
@@ -127,6 +126,5 @@ require (
 	golang.org/x/text v0.12.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

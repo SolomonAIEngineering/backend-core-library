@@ -365,34 +365,35 @@ func (s *Client) NewMuxRouter() *mux.Router {
 
 // configureNewrelicClient configures the newrelic client
 func (s *Client) configureNewrelicClient() error {
+	agentEnabled := s.Enabled
 	client, err := newrelic.NewApplication(
+		// service name
 		newrelic.ConfigAppName(s.ServiceName),
+		// license
 		newrelic.ConfigLicense(s.NewrelicKey),
-		newrelic.ConfigAppLogForwardingEnabled(s.Enabled),
+		newrelic.ConfigAppLogForwardingEnabled(true),
 		newrelic.ConfigAppLogForwardingMaxSamplesStored(1000),
 		newrelic.ConfigCustomInsightsEventsMaxSamplesStored(1000),
-
+		newrelic.ConfigAppLogEnabled(true),
+		newrelic.ConfigDistributedTracerEnabled(true),
+		newrelic.ConfigLogger(nrzap.Transform(s.Logger)),
+		newrelic.ConfigDistributedTracerEnabled(true),
+		newrelic.ConfigEnabled(agentEnabled),
 		func(cfg *newrelic.Config) {
-			cfg.ErrorCollector.RecordPanics = s.Enabled
-			cfg.ErrorCollector.Enabled = s.Enabled
-			cfg.TransactionEvents.Enabled = s.Enabled
+			cfg.ErrorCollector.RecordPanics = true
+			cfg.ErrorCollector.Enabled = true
+			cfg.TransactionEvents.Enabled = true
 			cfg.TransactionEvents.MaxSamplesStored = 1000
-			cfg.Enabled = s.Enabled
-			cfg.Attributes.Enabled = s.Enabled
-			cfg.TransactionTracer.Enabled = s.Enabled
-			cfg.SpanEvents.Enabled = s.Enabled
-			cfg.RuntimeSampler.Enabled = s.Enabled
-			cfg.DistributedTracer.Enabled = s.Enabled
+			cfg.Attributes.Enabled = true
+			cfg.TransactionTracer.Enabled = true
+			cfg.SpanEvents.Enabled = true
+			cfg.RuntimeSampler.Enabled = true
+			cfg.DistributedTracer.Enabled = true
 			cfg.AppName = s.ServiceName
-			cfg.DatastoreTracer.InstanceReporting.Enabled = s.Enabled
-			cfg.DatastoreTracer.QueryParameters.Enabled = s.Enabled
-			cfg.DatastoreTracer.DatabaseNameReporting.Enabled = s.Enabled
-			cfg.Logger = nrzap.Transform(s.Logger)
+			cfg.DatastoreTracer.InstanceReporting.Enabled = true
+			cfg.DatastoreTracer.QueryParameters.Enabled = true
+			cfg.DatastoreTracer.DatabaseNameReporting.Enabled = true
 		},
-		// Use nrzap to register the logger with the agent:
-		nrzap.ConfigLogger(s.Logger),
-		newrelic.ConfigDistributedTracerEnabled(s.Enabled),
-		newrelic.ConfigEnabled(s.Enabled),
 	)
 
 	if err != nil {
