@@ -25,7 +25,7 @@ TIMEOUT = 60
 .DEFAULT_GOAL := precommit
 
 .PHONY: precommit ci
-precommit: fmt test vanity-import-fix misspell go-mod-tidy  test-default
+precommit: fmt test vanity-import-fix misspell go-mod-tidy test-default
 ci: vanity-import-check build test-default check-clean-work-tree test-coverage
 VERSION:=$(shell grep 'VERSION' version.go | awk '{ print $$4 }' | tr -d '"')
 PATCH_VERSION?=$(shell grep 'VERSION' version.go | awk -F'[".]' '{ printf "%s.%s.%d", $$2, $$3, $$4+1 }')
@@ -301,4 +301,3 @@ release-patch-version:
 
 fmt:
 	gofmt -l -s -w ./..
-	goimports -l -w ./..
