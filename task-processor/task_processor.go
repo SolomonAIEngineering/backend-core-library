@@ -3,7 +3,6 @@ package taskprocessor // import "github.com/SolomonAIEngineering/backend-core-li
 import (
 	"context"
 	"errors"
-	"time"
 
 	"github.com/SimifiniiCTO/asynq"
 	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
@@ -162,14 +161,7 @@ func NewTaskProcessor(opts ...Option) (*TaskProcessor, error) {
 		asyncClientOpt,
 	)
 
-	// initialize new scheudler
-	loc, err := time.LoadLocation("America/New_York")
-	if err != nil {
-		panic(err)
-	}
-
 	schedulerOpts := &asynq.SchedulerOpts{
-		Location: loc,
 		PreEnqueueFunc: func(task *asynq.Task, opts []asynq.Option) {
 			// TODO: we need to emit a metric to new relic that we are enqueuing a recurring task
 		},
