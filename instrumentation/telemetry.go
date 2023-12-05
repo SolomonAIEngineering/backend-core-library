@@ -146,7 +146,7 @@ func New(opts ...Option) (*Client, error) {
 		opt(telemetry)
 	}
 
-	if err := telemetry.configureNewrelicClient(); err != nil {
+	if err := telemetry.configureNrClient(); err != nil {
 		return nil, err
 	}
 
@@ -363,36 +363,43 @@ func (s *Client) NewMuxRouter() *mux.Router {
 	return r
 }
 
-// configureNewrelicClient configures the newrelic client
-func (s *Client) configureNewrelicClient() error {
-	agentEnabled := s.Enabled
+// configureNrClient configures the newrelic client
+func (s *Client) configureNrClient() error {
+	z, _ := zap.NewProduction()
+
 	client, err := newrelic.NewApplication(
 		// service name
 		newrelic.ConfigAppName(s.ServiceName),
 		// license
 		newrelic.ConfigLicense(s.NewrelicKey),
-		newrelic.ConfigAppLogForwardingEnabled(true),
+		// enabel application log forwarding
+		newrelic.ConfigAppLogForwardingEnabled(s.Enabled),
+		// configure max log forwarding samples
 		newrelic.ConfigAppLogForwardingMaxSamplesStored(1000),
+		// custom insights samples stored
 		newrelic.ConfigCustomInsightsEventsMaxSamplesStored(1000),
-		newrelic.ConfigAppLogEnabled(true),
-		newrelic.ConfigDistributedTracerEnabled(true),
-		newrelic.ConfigLogger(nrzap.Transform(s.Logger)),
-		newrelic.ConfigDistributedTracerEnabled(true),
-		newrelic.ConfigEnabled(agentEnabled),
+		// enable app logging
+		newrelic.ConfigAppLogEnabled(s.Enabled),
+		// enable distributed tracing
+		newrelic.ConfigDistributedTracerEnabled(s.Enabled),
+		// enable the agent
+		newrelic.ConfigEnabled(s.Enabled),
+		// configure the logger to be names to the service name and use the zap logger
+		nrzap.ConfigLogger(z.Named(s.ServiceName)),
 		func(cfg *newrelic.Config) {
-			cfg.ErrorCollector.RecordPanics = true
-			cfg.ErrorCollector.Enabled = true
-			cfg.TransactionEvents.Enabled = true
+			cfg.ErrorCollector.RecordPanics = s.Enabled
+			cfg.ErrorCollector.Enabled = s.Enabled
+			cfg.TransactionEvents.Enabled = s.Enabled
 			cfg.TransactionEvents.MaxSamplesStored = 1000
-			cfg.Attributes.Enabled = true
-			cfg.TransactionTracer.Enabled = true
-			cfg.SpanEvents.Enabled = true
-			cfg.RuntimeSampler.Enabled = true
-			cfg.DistributedTracer.Enabled = true
+			cfg.Attributes.Enabled = s.Enabled
+			cfg.TransactionTracer.Enabled = s.Enabled
+			cfg.SpanEvents.Enabled = s.Enabled
+			cfg.RuntimeSampler.Enabled = s.Enabled
+			cfg.DistributedTracer.Enabled = s.Enabled
 			cfg.AppName = s.ServiceName
-			cfg.DatastoreTracer.InstanceReporting.Enabled = true
-			cfg.DatastoreTracer.QueryParameters.Enabled = true
-			cfg.DatastoreTracer.DatabaseNameReporting.Enabled = true
+			cfg.DatastoreTracer.InstanceReporting.Enabled = s.Enabled
+			cfg.DatastoreTracer.QueryParameters.Enabled = s.Enabled
+			cfg.DatastoreTracer.DatabaseNameReporting.Enabled = s.Enabled
 		},
 	)
 

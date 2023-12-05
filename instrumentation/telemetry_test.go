@@ -236,7 +236,7 @@ func TestConfigureNewrelicClient(t *testing.T) {
 		Enabled:     enabled,
 		Logger:      logger,
 	}
-	err := client.configureNewrelicClient()
+	err := client.configureNrClient()
 
 	// assert that there were no errors returned
 	if err != nil {
