@@ -1,8 +1,7 @@
-package message_definitionv1 // import "github.com/SolomonAIEngineering/backend-core-library/message_queue/generated/message-definition/message_definition/v1"
+package message_definitionv1
 
 import (
 	context "context"
-
 	gorm1 "github.com/infobloxopen/atlas-app-toolkit/gorm"
 	errors "github.com/infobloxopen/protoc-gen-gorm/errors"
 	gorm "github.com/jinzhu/gorm"

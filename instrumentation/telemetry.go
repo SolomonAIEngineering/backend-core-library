@@ -44,6 +44,8 @@ type Client struct {
 	EnableTracing bool `json:"enable_tracing"`
 	// wether events are enabled
 	EnableEvents bool `json:"enable_events"`
+	// wether logs are enabled
+	EnableLogs bool `json:"enable_logs"`
 	// The New Relic Sdk Object
 	client *newrelic.Application
 	// `NewrelicKey` is a field in the `Client` struct that holds the New Relic license key. The
@@ -373,15 +375,15 @@ func (s *Client) configureNrClient() error {
 		// license
 		newrelic.ConfigLicense(s.NewrelicKey),
 		// enabel application log forwarding
-		newrelic.ConfigAppLogForwardingEnabled(s.Enabled),
+		newrelic.ConfigAppLogForwardingEnabled(s.EnableLogs),
 		// configure max log forwarding samples
 		newrelic.ConfigAppLogForwardingMaxSamplesStored(1000),
 		// custom insights samples stored
 		newrelic.ConfigCustomInsightsEventsMaxSamplesStored(1000),
 		// enable app logging
-		newrelic.ConfigAppLogEnabled(s.Enabled),
+		newrelic.ConfigAppLogEnabled(s.EnableLogs),
 		// enable distributed tracing
-		newrelic.ConfigDistributedTracerEnabled(s.Enabled),
+		newrelic.ConfigDistributedTracerEnabled(s.EnableTracing),
 		// enable the agent
 		newrelic.ConfigEnabled(s.Enabled),
 		// configure the logger to be names to the service name and use the zap logger
@@ -389,7 +391,7 @@ func (s *Client) configureNrClient() error {
 		func(cfg *newrelic.Config) {
 			cfg.ErrorCollector.RecordPanics = s.Enabled
 			cfg.ErrorCollector.Enabled = s.Enabled
-			cfg.TransactionEvents.Enabled = s.Enabled
+			cfg.TransactionEvents.Enabled = s.EnableTracing
 			cfg.TransactionEvents.MaxSamplesStored = 1000
 			cfg.Attributes.Enabled = s.Enabled
 			cfg.TransactionTracer.Enabled = s.Enabled
@@ -400,7 +402,11 @@ func (s *Client) configureNrClient() error {
 			cfg.DatastoreTracer.InstanceReporting.Enabled = s.Enabled
 			cfg.DatastoreTracer.QueryParameters.Enabled = s.Enabled
 			cfg.DatastoreTracer.DatabaseNameReporting.Enabled = s.Enabled
+			cfg.Labels = map[string]string{
+				"Environment": s.ServiceEnvironment,
+			}
 		},
+		
 	)
 
 	if err != nil {

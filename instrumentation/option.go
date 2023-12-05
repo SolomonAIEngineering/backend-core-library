@@ -72,6 +72,14 @@ func WithEnableEvents(enableEvents bool) Option {
 	}
 }
 
+// WithEnableLogger configures wether or not logging is enabled
+func WithEnableLogger(enableLogger bool) Option {
+	return func(t *Client) {
+		t.EnableLogs = enableLogger
+	}
+}
+
+
 func (t *Client) Validate() error {
 	if t.ServiceName == "" {
 		return fmt.Errorf("service name not set")
