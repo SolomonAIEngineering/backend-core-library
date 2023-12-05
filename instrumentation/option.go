@@ -79,7 +79,6 @@ func WithEnableLogger(enableLogger bool) Option {
 	}
 }
 
-
 func (t *Client) Validate() error {
 	if t.ServiceName == "" {
 		return fmt.Errorf("service name not set")

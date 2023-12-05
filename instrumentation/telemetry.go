@@ -406,7 +406,6 @@ func (s *Client) configureNrClient() error {
 				"Environment": s.ServiceEnvironment,
 			}
 		},
-		
 	)
 
 	if err != nil {
