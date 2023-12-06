@@ -383,7 +383,6 @@ func getRedisConnectionString() string {
 	return fmt.Sprintf("redis://:@%s", redisServer.Addr())
 }
 
-
 // GenerateRandomString generates a random string based on the size specified by the client
 func generateRandomString(n int) string {
 	b := make([]byte, n)

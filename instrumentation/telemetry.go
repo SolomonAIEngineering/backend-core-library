@@ -47,7 +47,7 @@ type Client struct {
 	// wether logs are enabled
 	EnableLogs bool `json:"enable_logs"`
 	// The New Relic Sdk Object
-	client *newrelic.Application
+	Client *newrelic.Application
 	// `NewrelicKey` is a field in the `Client` struct that holds the New Relic license key. The
 	// `json:"newrelic_key"` tag is used to specify the name of the field when it is serialized to JSON.
 	NewrelicKey string `json:"newrelic_key"`
@@ -148,8 +148,10 @@ func New(opts ...Option) (*Client, error) {
 		opt(telemetry)
 	}
 
-	if err := telemetry.configureNrClient(); err != nil {
-		return nil, err
+	if telemetry.Client == nil {
+		if err := telemetry.configureNrClient(); err != nil {
+			return nil, err
+		}	
 	}
 
 	if err := telemetry.Validate(); err != nil {
@@ -169,13 +171,13 @@ func New(opts ...Option) (*Client, error) {
 // RecordMetric takes two parameters: `metric` of type `string` and `metricValue` of type `float64`. The purpose of
 // this method is to record a metric with a given name and value.
 func (s *Client) RecordMetric(metric string, metricValue float64) {
-	s.client.RecordCustomMetric(metric, metricValue)
+	s.Client.RecordCustomMetric(metric, metricValue)
 }
 
 // RecordEvent takes two parameters: `eventType` of type `string` and `params` of type `map[string]interface{}`.
 // The purpose of this method is to record a custom event with a given name and parameters.
 func (s *Client) RecordEvent(eventType string, params map[string]interface{}) {
-	s.client.RecordCustomEvent(eventType, params)
+	s.Client.RecordCustomEvent(eventType, params)
 }
 
 // Enabled implements IServiceTelemetry
@@ -227,7 +229,7 @@ func (s *Client) NewChildSpan(name string, parent newrelic.Transaction) *newreli
 // StartTransaction implements IServiceTelemetry
 func (s *Client) StartTransaction(name string) *newrelic.Transaction {
 
-	return s.client.StartTransaction(name)
+	return s.Client.StartTransaction(name)
 
 }
 
@@ -333,14 +335,14 @@ func (s *Client) StartSegment(txn *newrelic.Transaction, name string) *newrelic.
 // GetUnaryServerInterceptors implements IServiceTelemetry
 func (s *Client) GetUnaryServerInterceptors() []grpc.UnaryServerInterceptor {
 	return []grpc.UnaryServerInterceptor{
-		nrgrpc.UnaryServerInterceptor(s.client),
+		nrgrpc.UnaryServerInterceptor(s.Client),
 	}
 }
 
 // GetStreamServerInterceptors implements IServiceTelemetry
 func (s *Client) GetStreamServerInterceptors() []grpc.StreamServerInterceptor {
 	return []grpc.StreamServerInterceptor{
-		nrgrpc.StreamServerInterceptor(s.client),
+		nrgrpc.StreamServerInterceptor(s.Client),
 	}
 }
 
@@ -361,7 +363,7 @@ func (s *Client) GetStreamClientInterceptors() []grpc.StreamClientInterceptor {
 // NewMuxRouter returns a new mux router
 func (s *Client) NewMuxRouter() *mux.Router {
 	r := mux.NewRouter()
-	r.Use(nrgorilla.Middleware(s.client))
+	r.Use(nrgorilla.Middleware(s.Client))
 	return r
 }
 
@@ -412,6 +414,6 @@ func (s *Client) configureNrClient() error {
 		return err
 	}
 
-	s.client = client
+	s.Client = client
 	return nil
 }

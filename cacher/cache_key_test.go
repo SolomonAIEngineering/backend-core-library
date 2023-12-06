@@ -8,22 +8,22 @@ func TestCacheKey_Enrich(t *testing.T) {
 	c := NewCacheKey("test-cache-key") // Declare and initialize the variable c
 
 	tests := []struct {
-		name   string
-		c      CacheKey
-		value  string
-		want   string
+		name  string
+		c     CacheKey
+		value string
+		want  string
 	}{
 		{
-			name:   "Empty value",
-			c:      c,
-			value:  "",
-			want:   "",
+			name:  "Empty value",
+			c:     c,
+			value: "",
+			want:  "",
 		},
 		{
-			name:   "Non-empty value",
-			c:      c,
-			value:  "example",
-			want:   "test-cache-key:example",
+			name:  "Non-empty value",
+			c:     c,
+			value: "example",
+			want:  "test-cache-key:example",
 		},
 	}
 

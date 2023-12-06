@@ -3,6 +3,7 @@ package instrumentation // import "github.com/SolomonAIEngineering/backend-core-
 import (
 	"fmt"
 
+	"github.com/newrelic/go-agent/v3/newrelic"
 	"go.uber.org/zap"
 )
 
@@ -79,6 +80,13 @@ func WithEnableLogger(enableLogger bool) Option {
 	}
 }
 
+// WithClient configures the newrelic client
+func WithClient(client *newrelic.Application) Option {
+	return func(t *Client) {
+		t.Client = client
+	}
+}
+
 func (t *Client) Validate() error {
 	if t.ServiceName == "" {
 		return fmt.Errorf("service name not set")
@@ -100,7 +108,7 @@ func (t *Client) Validate() error {
 		return fmt.Errorf("logger not set")
 	}
 
-	if t.client == nil {
+	if t.Client == nil {
 		return fmt.Errorf("client not set")
 	}
 

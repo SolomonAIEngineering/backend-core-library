@@ -181,7 +181,7 @@ func TestClient_StartSegment(t *testing.T) {
 func TestClient_GetUnaryServerInterceptors(t *testing.T) {
 	client := &Client{
 		Logger: zap.NewNop(),
-		client: &newrelic.Application{},
+		Client: &newrelic.Application{},
 	}
 
 	interceptors := client.GetUnaryServerInterceptors()
@@ -193,7 +193,7 @@ func TestClient_GetUnaryServerInterceptors(t *testing.T) {
 func TestClient_GetStreamServerInterceptors(t *testing.T) {
 	client := &Client{
 		Logger: zap.NewNop(),
-		client: &newrelic.Application{},
+		Client: &newrelic.Application{},
 	}
 
 	interceptors := client.GetStreamServerInterceptors()
@@ -244,7 +244,7 @@ func TestConfigureNewrelicClient(t *testing.T) {
 	}
 
 	// assert that the client was configured correctly
-	if client.client == nil {
+	if client.Client == nil {
 		t.Error("expected client to be configured, but it was nil")
 	}
 }
