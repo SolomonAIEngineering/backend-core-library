@@ -6,6 +6,7 @@ require (
 	github.com/GetStream/stream-go2/v7 v7.1.0
 	github.com/SimifiniiCTO/asynq v0.0.0-20230512193438-0e30b7c808e5
 	github.com/algolia/algoliasearch-client-go/v3 v3.29.2
+	github.com/alicebob/miniredis v2.5.0+incompatible
 	github.com/alicebob/miniredis/v2 v2.30.2
 	github.com/aws/aws-sdk-go v1.44.264
 	github.com/envoyproxy/protoc-gen-validate v1.0.2
@@ -49,7 +50,6 @@ require (
 	github.com/ClickHouse/clickhouse-go/v2 v2.8.3 // indirect
 	github.com/acobaugh/osrelease v0.0.0-20181218015638-a93a0a55a249 // indirect
 	github.com/alicebob/gopher-json v0.0.0-20200520072559-a9ecdc9d1d3a // indirect
-	github.com/alicebob/miniredis v2.5.0+incompatible // indirect
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect

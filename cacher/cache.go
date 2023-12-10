@@ -187,3 +187,32 @@ func (s *Client) WriteAnyToCache(ctx context.Context, key string, value interfac
 
 	return nil
 }
+
+// WriteToCache writes a value to the cache
+func (s *Client) WriteToCacheWithTTL(ctx context.Context, key string, value []byte, timeToLiveInSeconds int) error {
+	if timeToLiveInSeconds <= 0 {
+		timeToLiveInSeconds = 60
+	}
+
+	if s.instrumentationClient != nil {
+		txn := s.instrumentationClient.GetTraceFromContext(ctx)
+		span := s.instrumentationClient.StartRedisDatastoreSegment(txn, "redis-write-to-cache-with-ttl")
+		defer span.End()
+	}
+
+	// validate the key
+	if key == "" {
+		return fmt.Errorf("empty key")
+	}
+
+	prefixedCacheKey := fmt.Sprintf("%s:%s", s.serviceName, key)
+
+	conn := s.pool.Get()
+	defer conn.Close()
+
+	if _, err := conn.Do("SET", prefixedCacheKey, string(value), "EX", timeToLiveInSeconds); err != nil {
+		return err
+	}
+
+	return nil
+}
