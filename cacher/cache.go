@@ -188,7 +188,7 @@ func (s *Client) WriteAnyToCache(ctx context.Context, key string, value interfac
 	return nil
 }
 
-// WriteToCache writes a value to the cache
+// WriteToCacheWithTTL writes a value to the cache with a defined ttl in seconds
 func (s *Client) WriteToCacheWithTTL(ctx context.Context, key string, value []byte, timeToLiveInSeconds int) error {
 	if timeToLiveInSeconds <= 0 {
 		timeToLiveInSeconds = 60
