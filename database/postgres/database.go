@@ -148,7 +148,9 @@ func (c *Client) connect() error {
 	err := retry.Do(
 		func(conn chan<- *gorm.DB) func() error {
 			return func() error {
-				newConn, err := gorm.Open(postgres.Open(*c.ConnectionString), &gorm.Config{})
+				newConn, err := gorm.Open(postgres.Open(*c.ConnectionString), &gorm.Config{
+					CreateBatchSize: 500,
+				})
 				conn <- newConn
 				return err
 			}
