@@ -151,7 +151,7 @@ func New(opts ...Option) (*Client, error) {
 	if telemetry.Client == nil {
 		if err := telemetry.configureNrClient(); err != nil {
 			return nil, err
-		}	
+		}
 	}
 
 	if err := telemetry.Validate(); err != nil {
