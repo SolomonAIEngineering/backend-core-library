@@ -8,6 +8,26 @@ import (
 	"github.com/gomodule/redigo/redis"
 )
 
+// WriteWithTTL writes a value to the cache with time to live
+func (c *Client) WriteWithTTL(ctx context.Context, key string, value []byte, cacheTTLInSeconds int) error {
+	txn := c.telemetrySdk.GetTraceFromContext(ctx)
+	span := c.telemetrySdk.StartRedisDatastoreSegment(txn, RedisWriteToCacheWithTTLTxn.String())
+	defer span.End()
+
+	// validate the key
+	if key == "" {
+		return fmt.Errorf("empty key")
+	}
+
+	conn := c.pool.Get()
+	defer conn.Close()
+	if _, err := conn.Do("SET", key, string(value), "EX", cacheTTLInSeconds); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // WriteToCache writes a value to the cache
 func (c *Client) Write(ctx context.Context, key string, value []byte) error {
 	txn := c.telemetrySdk.GetTraceFromContext(ctx)

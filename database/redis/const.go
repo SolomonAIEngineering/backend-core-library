@@ -26,4 +26,8 @@ const (
 	// value `"txn.redis.delete-from-cache"`. This constant is used as a transaction name or identifier for
 	// delete operations on a Redis cache in a larger codebase.
 	RedisDeleteFromCacheTxn DatastoreTxName = "txn.redis.delete-from-cache"
+	// Defining a constant named `RedisWriteToCacheWithTTLTxn` of type `DatastoreTxName` and assigning it the
+	// value `"txn.redis.write-to-cache-with-ttl"`. This constant is used as a transaction name or identifier for
+	// write operations on a Redis cache with a TTL in a larger codebase.
+	RedisWriteToCacheWithTTLTxn DatastoreTxName = "txn.redis.write-to-cache-with-ttl"
 )
