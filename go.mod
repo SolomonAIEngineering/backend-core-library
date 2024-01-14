@@ -9,7 +9,7 @@ require (
 	github.com/alicebob/miniredis v2.5.0+incompatible
 	github.com/alicebob/miniredis/v2 v2.30.2
 	github.com/aws/aws-sdk-go v1.44.264
-	github.com/envoyproxy/protoc-gen-validate v1.0.2
+	github.com/envoyproxy/protoc-gen-validate v1.0.3
 	github.com/giantswarm/retry-go v0.0.0-20151203102909-d78cea247d5e
 	github.com/gomodule/redigo v1.8.9
 	github.com/gorilla/mux v1.8.0
@@ -26,6 +26,7 @@ require (
 	github.com/newrelic/go-agent/v3/integrations/nrmongo v1.1.1
 	github.com/newrelic/go-agent/v3/integrations/nrzap v1.0.1
 	github.com/patrickmn/go-cache v2.1.0+incompatible
+	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.0.4
 	github.com/spf13/viper v1.15.0
 	github.com/stretchr/testify v1.8.4
@@ -37,7 +38,7 @@ require (
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto v0.0.0-20231120223509-83a465c0220f
 	google.golang.org/grpc v1.59.0
-	google.golang.org/protobuf v1.31.0
+	google.golang.org/protobuf v1.32.0
 	gopkg.in/square/go-jose.v2 v2.6.0
 	gorm.io/driver/clickhouse v0.5.1
 	gorm.io/driver/postgres v1.5.0
@@ -95,14 +96,13 @@ require (
 	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
 	github.com/pierrec/lz4/v4 v4.1.17 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/robfig/cron v1.2.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/rogpeppe/go-internal v1.10.0 // indirect
 	github.com/segmentio/asm v1.2.0 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
-	github.com/spf13/afero v1.9.5 // indirect
+	github.com/spf13/afero v1.10.0 // indirect
 	github.com/spf13/cast v1.5.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
