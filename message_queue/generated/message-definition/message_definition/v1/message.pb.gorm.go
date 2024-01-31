@@ -9,7 +9,7 @@ import (
 )
 
 type DeleteAccountMessageFormatORM struct {
-	AuthnId     uint64
+	AuthZeroId  string
 	Email       string
 	ProfileType string
 	UserId      uint64
@@ -30,7 +30,7 @@ func (m *DeleteAccountMessageFormat) ToORM(ctx context.Context) (DeleteAccountMe
 			return to, err
 		}
 	}
-	to.AuthnId = m.AuthnId
+	to.AuthZeroId = m.AuthZeroId
 	to.Email = m.Email
 	to.UserId = m.UserId
 	to.ProfileType = DeleteAccountMessageFormat_ProfileType_name[int32(m.ProfileType)]
@@ -50,7 +50,7 @@ func (m *DeleteAccountMessageFormatORM) ToPB(ctx context.Context) (DeleteAccount
 			return to, err
 		}
 	}
-	to.AuthnId = m.AuthnId
+	to.AuthZeroId = m.AuthZeroId
 	to.Email = m.Email
 	to.UserId = m.UserId
 	to.ProfileType = DeleteAccountMessageFormat_ProfileType(DeleteAccountMessageFormat_ProfileType_value[m.ProfileType])
@@ -125,8 +125,8 @@ func DefaultApplyFieldMaskDeleteAccountMessageFormat(ctx context.Context, patche
 	}
 	var err error
 	for _, f := range updateMask.Paths {
-		if f == prefix+"AuthnId" {
-			patchee.AuthnId = patcher.AuthnId
+		if f == prefix+"AuthZeroId" {
+			patchee.AuthZeroId = patcher.AuthZeroId
 			continue
 		}
 		if f == prefix+"Email" {

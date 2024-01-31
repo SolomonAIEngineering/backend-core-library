@@ -23,9 +23,8 @@ message DeleteAccountMessageFormat {
   option (gorm.opts) = {
     ormable : true,
   };
-  // authn id which is the id of the account from the vantage point of the 
-  // authentication service
-  uint64 authn_id = 1 [
+  // auth_zero_id which is the id indicating the user and is the source of truth across all backend services
+  string auth_zero_id = 1 [
     (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
       example: ""
     }
