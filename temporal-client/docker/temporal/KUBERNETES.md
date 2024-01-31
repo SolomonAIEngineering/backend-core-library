@@ -7,7 +7,7 @@ There are a variety of manifest folders, each setup to utilize a different set o
 
 To use these manifests, you must first have a Kubernetes cluster setup. If you'd just like to try this locally without using a Kubernetes cluster setup in the cloud then tools like `minikube`, `kind` or Docker Desktop's built-in kubernetes setup will all work just fine to create a cluster you can use for exploring Temporal.
 
-You must have `kubectl` configured and be able to succesfully run commands like `kubectl get pods` to be able to follow the examples in this document.
+You must have `kubectl` configured and be able to successfully run commands like `kubectl get pods` to be able to follow the examples in this document.
 
 ## How to use
 
