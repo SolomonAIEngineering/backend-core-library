@@ -1,4 +1,4 @@
-package batch_job
+package batch_job // import "github.com/SolomonAIEngineering/backend-core-library/batch-job"
 
 import (
 	"context"

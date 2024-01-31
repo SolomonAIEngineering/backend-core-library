@@ -13,6 +13,6 @@
 // limitations under the License.
 
 /*
-Package message_queue provides global access to message queue subpackages (consumer and client)
+Package messagequeue provides global access to message queue subpackages (consumer and client)
 */
-package message_queue // import "github.com/SolomonAIEngineering/backend-core-library/message_queue"
+package messagequeue // import "github.com/SolomonAIEngineering/backend-core-library/message_queue"

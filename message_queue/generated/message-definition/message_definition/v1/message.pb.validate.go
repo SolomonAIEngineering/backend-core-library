@@ -57,7 +57,7 @@ func (m *DeleteAccountMessageFormat) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for AuthnId
+	// no validation rules for AuthZeroId
 
 	if err := m._validateEmail(m.GetEmail()); err != nil {
 		err = DeleteAccountMessageFormatValidationError{

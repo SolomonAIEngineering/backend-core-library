@@ -224,7 +224,7 @@ for deleting an accoun
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| authn_id | [uint64](#uint64) |  | authn id which is the id of the account from the vantage point of the authentication service |
+| auth_zero_id | [string](#string) |  | auth_zero_id which is the id indicating the user and is the source of truth across all backend services |
 | email | [string](#string) |  | account email Validations: - must be an email and required |
 | user_id | [uint64](#uint64) |  | user_id id from the vantage point of the user service |
 | profile_type | [DeleteAccountMessageFormat.ProfileType](#message_definition-v1-DeleteAccountMessageFormat-ProfileType) |  | the profile type of the given account |

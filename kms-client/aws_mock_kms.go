@@ -1,4 +1,4 @@
-package kmsClient
+package kmsClient // import "github.com/SolomonAIEngineering/backend-core-library/kms-client"
 
 import (
 	"context"

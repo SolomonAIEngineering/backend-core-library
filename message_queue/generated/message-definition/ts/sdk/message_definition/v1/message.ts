@@ -9,11 +9,8 @@ export const protobufPackage = "message_definition.v1";
  * for deleting an accoun
  */
 export interface DeleteAccountMessageFormat {
-  /**
-   * authn id which is the id of the account from the vantage point of the
-   * authentication service
-   */
-  authnId: number;
+  /** auth_zero_id which is the id indicating the user and is the source of truth across all backend services */
+  authZeroId: string;
   /**
    * account email
    * Validations:
@@ -66,13 +63,13 @@ export function deleteAccountMessageFormat_ProfileTypeToJSON(object: DeleteAccou
 }
 
 function createBaseDeleteAccountMessageFormat(): DeleteAccountMessageFormat {
-  return { authnId: 0, email: "", userId: 0, profileType: 0 };
+  return { authZeroId: "", email: "", userId: 0, profileType: 0 };
 }
 
 export const DeleteAccountMessageFormat = {
   encode(message: DeleteAccountMessageFormat, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authnId !== 0) {
-      writer.uint32(8).uint64(message.authnId);
+    if (message.authZeroId !== "") {
+      writer.uint32(10).string(message.authZeroId);
     }
     if (message.email !== "") {
       writer.uint32(18).string(message.email);
@@ -94,11 +91,11 @@ export const DeleteAccountMessageFormat = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.authnId = longToNumber(reader.uint64() as Long);
+          message.authZeroId = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
@@ -132,7 +129,7 @@ export const DeleteAccountMessageFormat = {
 
   fromJSON(object: any): DeleteAccountMessageFormat {
     return {
-      authnId: isSet(object.authnId) ? globalThis.Number(object.authnId) : 0,
+      authZeroId: isSet(object.authZeroId) ? globalThis.String(object.authZeroId) : "",
       email: isSet(object.email) ? globalThis.String(object.email) : "",
       userId: isSet(object.userId) ? globalThis.Number(object.userId) : 0,
       profileType: isSet(object.profileType) ? deleteAccountMessageFormat_ProfileTypeFromJSON(object.profileType) : 0,
@@ -141,8 +138,8 @@ export const DeleteAccountMessageFormat = {
 
   toJSON(message: DeleteAccountMessageFormat): unknown {
     const obj: any = {};
-    if (message.authnId !== 0) {
-      obj.authnId = Math.round(message.authnId);
+    if (message.authZeroId !== "") {
+      obj.authZeroId = message.authZeroId;
     }
     if (message.email !== "") {
       obj.email = message.email;
@@ -161,7 +158,7 @@ export const DeleteAccountMessageFormat = {
   },
   fromPartial<I extends Exact<DeepPartial<DeleteAccountMessageFormat>, I>>(object: I): DeleteAccountMessageFormat {
     const message = createBaseDeleteAccountMessageFormat();
-    message.authnId = object.authnId ?? 0;
+    message.authZeroId = object.authZeroId ?? "";
     message.email = object.email ?? "";
     message.userId = object.userId ?? 0;
     message.profileType = object.profileType ?? 0;
