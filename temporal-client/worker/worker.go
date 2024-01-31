@@ -1,4 +1,4 @@
-package worker
+package worker // import "github.com/SolomonAIEngineering/backend-core-library/temporal-client/worker"
 
 import (
 	"log"

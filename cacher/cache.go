@@ -1,4 +1,4 @@
-package cacher
+package cacher // import "github.com/SolomonAIEngineering/backend-core-library/cacher"
 
 import (
 	"context"

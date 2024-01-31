@@ -1,4 +1,4 @@
-package sagaclient
+package sagaclient // import "github.com/SolomonAIEngineering/backend-core-library/temporal-client/saga-client"
 
 import (
 	"go.temporal.io/sdk/workflow"

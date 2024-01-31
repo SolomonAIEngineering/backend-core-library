@@ -1,6 +1,6 @@
 // Package scheduleclient provides functionalities to interact with a scheduling service,
 // such as creating and managing scheduled tasks.
-package scheduleclient
+package scheduleclient // import "github.com/SolomonAIEngineering/backend-core-library/temporal-client/schedule-client"
 
 import (
 	"go.temporal.io/sdk/client"

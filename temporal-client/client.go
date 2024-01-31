@@ -5,7 +5,7 @@
 //
 // The main components are the TemporalConfig struct and the NewTemporalClient
 // function, which uses the configuration to create a Temporal client.
-package temporalclient
+package temporalclient // import "github.com/SolomonAIEngineering/backend-core-library/temporal-client"
 
 import (
 	"crypto/tls"
@@ -13,7 +13,6 @@ import (
 	"go.temporal.io/sdk/client"
 	"go.uber.org/zap"
 )
-
 
 type TemporalExecutorClient struct {
 	Client client.Client

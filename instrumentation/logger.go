@@ -1,4 +1,4 @@
-package instrumentation
+package instrumentation // import "github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 
 import (
 	"context"

@@ -1,4 +1,4 @@
-package temporalerrors
+package temporalerrors // import "github.com/SolomonAIEngineering/backend-core-library/temporal-client/temporal-errors"
 
 import "errors"
 

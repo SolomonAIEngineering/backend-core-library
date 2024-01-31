@@ -1,4 +1,4 @@
-package temporalclient
+package temporalclient // import "github.com/SolomonAIEngineering/backend-core-library/temporal-client"
 
 import "errors"
 
