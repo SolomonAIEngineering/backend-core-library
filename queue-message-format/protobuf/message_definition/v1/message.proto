@@ -53,3 +53,13 @@ message DeleteAccountMessageFormat {
     }
   ];
 }
+
+message AlgoliaSearchRecordFormat {
+  string name = 1;
+  string user_id = 2;
+  uint64 profile_id = 3;
+  uint64 community_id = 4;
+  repeated string tags = 5;
+  string created_at = 6;
+  string profile_image_url = 7;
+}

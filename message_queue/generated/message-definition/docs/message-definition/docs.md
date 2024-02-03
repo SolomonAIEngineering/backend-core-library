@@ -15,6 +15,7 @@
     - [NotFoundErrorCode](#message_definition-v1-NotFoundErrorCode)
   
 - [message_definition/v1/message.proto](#message_definition_v1_message-proto)
+    - [AlgoliaSearchRecordFormat](#message_definition-v1-AlgoliaSearchRecordFormat)
     - [DeleteAccountMessageFormat](#message_definition-v1-DeleteAccountMessageFormat)
   
     - [DeleteAccountMessageFormat.ProfileType](#message_definition-v1-DeleteAccountMessageFormat-ProfileType)
@@ -212,6 +213,27 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## message_definition/v1/message.proto
+
+
+
+<a name="message_definition-v1-AlgoliaSearchRecordFormat"></a>
+
+### AlgoliaSearchRecordFormat
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| user_id | [string](#string) |  |  |
+| profile_id | [uint64](#uint64) |  |  |
+| community_id | [uint64](#uint64) |  |  |
+| tags | [string](#string) | repeated |  |
+| created_at | [string](#string) |  |  |
+| profile_image_url | [string](#string) |  |  |
+
+
+
 
 
 

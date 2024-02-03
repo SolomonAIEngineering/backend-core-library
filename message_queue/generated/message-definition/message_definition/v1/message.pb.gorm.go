@@ -1,4 +1,4 @@
-package message_definitionv1 // import "github.com/SolomonAIEngineering/backend-core-library/message_queue/generated/message-definition/message_definition/v1"
+package message_definitionv1
 
 import (
 	context "context"

@@ -62,6 +62,16 @@ export function deleteAccountMessageFormat_ProfileTypeToJSON(object: DeleteAccou
   }
 }
 
+export interface AlgoliaSearchRecordFormat {
+  name: string;
+  userId: string;
+  profileId: number;
+  communityId: number;
+  tags: string[];
+  createdAt: string;
+  profileImageUrl: string;
+}
+
 function createBaseDeleteAccountMessageFormat(): DeleteAccountMessageFormat {
   return { authZeroId: "", email: "", userId: 0, profileType: 0 };
 }
@@ -162,6 +172,155 @@ export const DeleteAccountMessageFormat = {
     message.email = object.email ?? "";
     message.userId = object.userId ?? 0;
     message.profileType = object.profileType ?? 0;
+    return message;
+  },
+};
+
+function createBaseAlgoliaSearchRecordFormat(): AlgoliaSearchRecordFormat {
+  return { name: "", userId: "", profileId: 0, communityId: 0, tags: [], createdAt: "", profileImageUrl: "" };
+}
+
+export const AlgoliaSearchRecordFormat = {
+  encode(message: AlgoliaSearchRecordFormat, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+    if (message.userId !== "") {
+      writer.uint32(18).string(message.userId);
+    }
+    if (message.profileId !== 0) {
+      writer.uint32(24).uint64(message.profileId);
+    }
+    if (message.communityId !== 0) {
+      writer.uint32(32).uint64(message.communityId);
+    }
+    for (const v of message.tags) {
+      writer.uint32(42).string(v!);
+    }
+    if (message.createdAt !== "") {
+      writer.uint32(50).string(message.createdAt);
+    }
+    if (message.profileImageUrl !== "") {
+      writer.uint32(58).string(message.profileImageUrl);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): AlgoliaSearchRecordFormat {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAlgoliaSearchRecordFormat();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.profileId = longToNumber(reader.uint64() as Long);
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.communityId = longToNumber(reader.uint64() as Long);
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.tags.push(reader.string());
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.createdAt = reader.string();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.profileImageUrl = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): AlgoliaSearchRecordFormat {
+    return {
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+      profileId: isSet(object.profileId) ? globalThis.Number(object.profileId) : 0,
+      communityId: isSet(object.communityId) ? globalThis.Number(object.communityId) : 0,
+      tags: globalThis.Array.isArray(object?.tags) ? object.tags.map((e: any) => globalThis.String(e)) : [],
+      createdAt: isSet(object.createdAt) ? globalThis.String(object.createdAt) : "",
+      profileImageUrl: isSet(object.profileImageUrl) ? globalThis.String(object.profileImageUrl) : "",
+    };
+  },
+
+  toJSON(message: AlgoliaSearchRecordFormat): unknown {
+    const obj: any = {};
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    if (message.profileId !== 0) {
+      obj.profileId = Math.round(message.profileId);
+    }
+    if (message.communityId !== 0) {
+      obj.communityId = Math.round(message.communityId);
+    }
+    if (message.tags?.length) {
+      obj.tags = message.tags;
+    }
+    if (message.createdAt !== "") {
+      obj.createdAt = message.createdAt;
+    }
+    if (message.profileImageUrl !== "") {
+      obj.profileImageUrl = message.profileImageUrl;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<AlgoliaSearchRecordFormat>, I>>(base?: I): AlgoliaSearchRecordFormat {
+    return AlgoliaSearchRecordFormat.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<AlgoliaSearchRecordFormat>, I>>(object: I): AlgoliaSearchRecordFormat {
+    const message = createBaseAlgoliaSearchRecordFormat();
+    message.name = object.name ?? "";
+    message.userId = object.userId ?? "";
+    message.profileId = object.profileId ?? 0;
+    message.communityId = object.communityId ?? 0;
+    message.tags = object.tags?.map((e) => e) || [];
+    message.createdAt = object.createdAt ?? "";
+    message.profileImageUrl = object.profileImageUrl ?? "";
     return message;
   },
 };
