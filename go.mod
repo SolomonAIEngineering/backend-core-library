@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/GetStream/stream-go2/v7 v7.1.0
 	github.com/SimifiniiCTO/asynq v0.0.0-20230512193438-0e30b7c808e5
-	github.com/algolia/algoliasearch-client-go/v3 v3.29.2
+	github.com/algolia/algoliasearch-client-go/v3 v3.31.1
 	github.com/alicebob/miniredis v2.5.0+incompatible
 	github.com/alicebob/miniredis/v2 v2.30.2
 	github.com/aws/aws-sdk-go v1.44.264
