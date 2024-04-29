@@ -24,14 +24,40 @@ environment running
 
 Say what the step will be
 
-    Give the example
+  Give the example
 
 And repeat
 
-    until finished
+  until finished
 
 End with an example of getting some data out of the system or using it
 for a little demo
+
+## Initializing Databases
+
+### ClickHouse
+
+To initialize ClickHouse, follow these steps:
+
+1. Step 1
+2. Step 2
+3. Step 3
+
+### MongoDB
+
+To initialize MongoDB, follow these steps:
+
+1. Step 1
+2. Step 2
+3. Step 3
+
+### PostgreSQL
+
+To initialize PostgreSQL, follow these steps:
+
+1. Step 1
+2. Step 2
+3. Step 3
 
 ## Running the tests
 
@@ -41,13 +67,13 @@ Explain how to run the automated tests for this system
 
 Explain what these tests test and why
 
-    Give an example
+  Give an example
 
 ### Style test
 
 Checks if the best practices and the right coding style has been used.
 
-    Give an example
+  Give an example
 
 ## Deployment
 
@@ -56,9 +82,9 @@ Add additional notes to deploy this on a live system
 ## Built With
 
   - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
+  for the Code of Conduct
   - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
+  the license
 
 ## Contributing
 
@@ -74,7 +100,7 @@ repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
 ## Authors
 
   - **Billie Thompson** - *Provided README Template* -
-    [PurpleBooth](https://github.com/PurpleBooth)
+  [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of
 [contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)

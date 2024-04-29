@@ -110,7 +110,7 @@ func New(options ...Option) (*Client, error) {
 	// Get generic database object sql.DB to use its functions
 	sqlDB, err := c.Engine.DB()
 	if err != nil {
-		panic("failed to obtain generic db connection")
+		return nil, err
 	}
 
 	sqlDB.SetMaxIdleConns(*c.MaxIdleConnections)
