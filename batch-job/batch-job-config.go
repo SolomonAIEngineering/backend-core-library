@@ -3,7 +3,7 @@ package batch_job // import "github.com/SolomonAIEngineering/backend-core-librar
 import (
 	"fmt"
 
-	"github.com/SimifiniiCTO/asynq"
+	"github.com/hibiken/asynq"
 )
 
 type BatchJob struct {

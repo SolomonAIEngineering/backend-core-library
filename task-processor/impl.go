@@ -3,7 +3,7 @@ package taskprocessor // import "github.com/SolomonAIEngineering/backend-core-li
 import (
 	"context"
 
-	"github.com/SimifiniiCTO/asynq"
+	"github.com/hibiken/asynq"
 	"go.uber.org/zap"
 )
 

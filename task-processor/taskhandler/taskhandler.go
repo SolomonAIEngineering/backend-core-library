@@ -1,6 +1,6 @@
 package taskhandler // import "github.com/SolomonAIEngineering/backend-core-library/task-processor/taskhandler"
 
-import "github.com/SimifiniiCTO/asynq"
+import "github.com/hibiken/asynq"
 
 // `type ITaskHandler interface` is defining an interface that specifies the methods that must be
 // implemented by a task handler. This interface is likely used by the `TaskProcessor` to ensure that

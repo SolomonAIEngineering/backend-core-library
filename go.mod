@@ -6,7 +6,6 @@ toolchain go1.21.6
 
 require (
 	github.com/GetStream/stream-go2/v7 v7.1.0
-	github.com/SimifiniiCTO/asynq v0.0.0-20230512193438-0e30b7c808e5
 	github.com/algolia/algoliasearch-client-go/v3 v3.29.2
 	github.com/alicebob/miniredis v2.5.0+incompatible
 	github.com/alicebob/miniredis/v2 v2.30.2
@@ -29,7 +28,7 @@ require (
 	github.com/newrelic/go-agent/v3/integrations/nrzap v1.0.1
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pkg/errors v0.9.1
-	github.com/redis/go-redis/v9 v9.0.4
+	github.com/redis/go-redis/v9 v9.5.3
 	github.com/spf13/viper v1.15.0
 	github.com/stretchr/testify v1.9.0
 	github.com/tryvium-travels/memongo v0.9.0
@@ -40,7 +39,7 @@ require (
 	go.uber.org/zap v1.27.0
 	google.golang.org/genproto v0.0.0-20231120223509-83a465c0220f
 	google.golang.org/grpc v1.59.0
-	google.golang.org/protobuf v1.33.0
+	google.golang.org/protobuf v1.34.2
 	gopkg.in/square/go-jose.v2 v2.6.0
 	gorm.io/driver/clickhouse v0.6.0
 	gorm.io/driver/postgres v1.5.7
@@ -51,10 +50,11 @@ require (
 require (
 	github.com/ClickHouse/ch-go v0.61.5 // indirect
 	github.com/ClickHouse/clickhouse-go/v2 v2.23.2 // indirect
+	github.com/GetStream/stream-go2/v8 v8.4.3 // indirect
 	github.com/acobaugh/osrelease v0.0.0-20181218015638-a93a0a55a249 // indirect
 	github.com/alicebob/gopher-json v0.0.0-20200520072559-a9ecdc9d1d3a // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
-	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/dlclark/regexp2 v1.9.0 // indirect
@@ -68,9 +68,9 @@ require (
 	github.com/gogo/googleapis v1.4.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/gogo/status v1.1.1 // indirect
-	github.com/golang-jwt/jwt/v4 v4.4.1 // indirect
+	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/mock v1.6.0 // indirect
-	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
@@ -105,7 +105,7 @@ require (
 	github.com/segmentio/asm v1.2.0 // indirect
 	github.com/shopspring/decimal v1.4.0 // indirect
 	github.com/spf13/afero v1.9.5 // indirect
-	github.com/spf13/cast v1.5.1 // indirect
+	github.com/spf13/cast v1.6.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
@@ -123,9 +123,9 @@ require (
 	golang.org/x/crypto v0.22.0 // indirect
 	golang.org/x/net v0.22.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
-	golang.org/x/sys v0.19.0 // indirect
+	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	golang.org/x/time v0.3.0 // indirect
+	golang.org/x/time v0.5.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231127180814-3a041ad873d4 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

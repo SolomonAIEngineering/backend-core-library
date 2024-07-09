@@ -4,10 +4,10 @@ import (
 	"context"
 	"errors"
 
-	"github.com/SimifiniiCTO/asynq"
 	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"github.com/SolomonAIEngineering/backend-core-library/task-processor/taskhandler"
 	"github.com/SolomonAIEngineering/backend-core-library/task-processor/worker"
+	"github.com/hibiken/asynq"
 	"go.uber.org/zap"
 )
 

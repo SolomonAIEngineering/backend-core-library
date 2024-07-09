@@ -5,9 +5,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/SimifiniiCTO/asynq"
 	"github.com/SolomonAIEngineering/backend-core-library/instrumentation"
 	"github.com/SolomonAIEngineering/backend-core-library/task-processor/taskhandler"
+	"github.com/hibiken/asynq"
 )
 
 // `type Worker struct` is defining a new struct type called `Worker`. This struct type has three

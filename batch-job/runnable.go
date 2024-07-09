@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/SimifiniiCTO/asynq"
 	taskprocessor "github.com/SolomonAIEngineering/backend-core-library/task-processor"
+	"github.com/hibiken/asynq"
 )
 
 // Runnable is an interface that defines a method to register recurring batch jobs.
