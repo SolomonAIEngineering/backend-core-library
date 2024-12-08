@@ -16,6 +16,7 @@ import (
 	"go.temporal.io/sdk/worker"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
+	"google.golang.org/protobuf/types/known/durationpb"
 )
 
 var (
@@ -181,7 +182,7 @@ func configureTemporalNamespaceClient(opts *client.Options) (client.NamespaceCli
 	if err := c.Register(ctx, &workflowservice.RegisterNamespaceRequest{
 		Namespace:                        opts.Namespace,
 		OwnerEmail:                       "yoan@simfinii.com",
-		WorkflowExecutionRetentionPeriod: &workflowRetentionPeriod,
+		WorkflowExecutionRetentionPeriod: durationpb.New(workflowRetentionPeriod),
 	}); err != nil {
 		// ignore the error if the namespace already exists
 		if _, ok := err.(*serviceerror.NamespaceAlreadyExists); !ok {

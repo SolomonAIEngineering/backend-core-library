@@ -22,11 +22,11 @@ is designed so the following goals can be achieved.
 
     * If a module is version `v2` or higher, the major version of the module
       must be included as a `/vN` at the end of the module paths used in
-      `go.mod` files (e.g., `module github.com/SimifiniiCTO/simfiny-core-lib/v2`, `require
-      github.com/SimifiniiCTO/simfiny-core-lib/v2 v2.0.1`) and in the package import path
-      (e.g., `import "github.com/SimifiniiCTO/simfiny-core-lib/v2/database"`). This includes the
+      `go.mod` files (e.g., `module github.com/SimifiniiCTO/backend-core-lib/v2`, `require
+      github.com/SimifiniiCTO/backend-core-lib/v2 v2.0.1`) and in the package import path
+      (e.g., `import "github.com/SimifiniiCTO/backend-core-lib/v2/database"`). This includes the
       paths used in `go get` commands (e.g., `go get
-      github.com/SimifiniiCTO/simfiny-core-lib/v2@v2.0.1`.  Note there is both a `/v2` and a
+      github.com/SimifiniiCTO/backend-core-lib/v2@v2.0.1`.  Note there is both a `/v2` and a
       `@v2.0.1` in that example. One way to think about it is that the module
       name now includes the `/v2`, so include `/v2` whenever you are using the
       module name).
@@ -66,38 +66,38 @@ To better understand the implementation of the above policy the following
 example is provided. This project is simplified to include only the following
 modules and their versions:
 
-* `simfiny-core-lib`: `v0.14.0`
-* `simfiny-core-lib/database`: `v0.14.0`
-* `simfiny-core-lib/database/mongo`: `v0.14.0`
-* `simfiny-core-lib/database/postgres`: `v0.14.0`
-* `simfiny-core-lib/message_queue`: `v0.14.0`
-* `simfiny-core-lib/sdk/message_queue`: `v0.14.0`
+* `backend-core-lib`: `v0.14.0`
+* `backend-core-lib/database`: `v0.14.0`
+* `backend-core-lib/database/mongo`: `v0.14.0`
+* `backend-core-lib/database/postgres`: `v0.14.0`
+* `backend-core-lib/message_queue`: `v0.14.0`
+* `backend-core-lib/sdk/message_queue`: `v0.14.0`
 
-These modules have been developed to a point where the `simfiny-core-lib/database`,
-`simfiny-core-lib/database/postgres`, and `simfiny-core-lib/sdk/database/mongo` modules have reached a point that they
-should be considered for a stable release. The `simfiny-core-lib/message_queue` and
-is still under active development and the `simfiny-core-lib` module
-depends on both `simfiny-core-lib/database/postgres` and `simfiny-core-lib/message_queues`.
+These modules have been developed to a point where the `backend-core-lib/database`,
+`backend-core-lib/database/postgres`, and `backend-core-lib/sdk/database/mongo` modules have reached a point that they
+should be considered for a stable release. The `backend-core-lib/message_queue` and
+is still under active development and the `backend-core-lib` module
+depends on both `backend-core-lib/database/postgres` and `backend-core-lib/message_queues`.
 
-The `simfiny-core-lib` package is refactored to remove its dependencies on `simfiny-core-lib/message_queue` so
+The `backend-core-lib` package is refactored to remove its dependencies on `backend-core-lib/message_queue` so
 it can be released as stable as well. With that done the following release
 candidates are made:
 
-* `simfiny-core-lib`: `v1.0.0-RC1`
-* `simfiny-core-lib/database/mongo`: `v1.0.0-RC1`
-* `simfiny-core-lib/database/postgres`: `v1.0.0-RC1`
-* `simfiny-core-lib/sdk/database/mongo`: `v1.0.0-RC1`
+* `backend-core-lib`: `v1.0.0-RC1`
+* `backend-core-lib/database/mongo`: `v1.0.0-RC1`
+* `backend-core-lib/database/postgres`: `v1.0.0-RC1`
+* `backend-core-lib/sdk/database/mongo`: `v1.0.0-RC1`
 
-The `simfiny-core-lib/message_queue` and `simfiny-core-lib/sdk/message_queue` modules remain at `v0.14.0`.
+The `backend-core-lib/message_queue` and `backend-core-lib/sdk/message_queue` modules remain at `v0.14.0`.
 
-A few minor issues are discovered in the `simfiny-core-lib/database/mongo` package. These issues are
+A few minor issues are discovered in the `backend-core-lib/database/mongo` package. These issues are
 resolved with some minor, but backwards incompatible, changes and are released
 as a second release candidate:
 
-* `simfiny-core-lib`: `v1.0.0-RC2`
-* `simfiny-core-lib/database/mongo`: `v1.0.0-RC2`
-* `simfiny-core-lib/database/postgres`: `v1.0.0-RC2`
-* `simfiny-core-lib/sdk/database/mongo`: `v1.0.0-RC2`
+* `backend-core-lib`: `v1.0.0-RC2`
+* `backend-core-lib/database/mongo`: `v1.0.0-RC2`
+* `backend-core-lib/database/postgres`: `v1.0.0-RC2`
+* `backend-core-lib/sdk/database/mongo`: `v1.0.0-RC2`
 
 Notice that all module version numbers are incremented to adhere to our
 versioning policy.
@@ -105,10 +105,10 @@ versioning policy.
 After these release candidates have been evaluated to satisfaction, they are
 released as version `v1.0.0`.
 
-* `simfiny-core-lib`: `v1.0.0`
-* `simfiny-core-lib/database/mongo`: `v1.0.0`
-* `simfiny-core-lib/database/postgres`: `v1.0.0`
-* `simfiny-core-lib/sdk/database/mongo`: `v1.0.0`
+* `backend-core-lib`: `v1.0.0`
+* `backend-core-lib/database/mongo`: `v1.0.0`
+* `backend-core-lib/database/postgres`: `v1.0.0`
+* `backend-core-lib/sdk/database/mongo`: `v1.0.0`
 
 Since both the `go` utility and the Go module system support [the semantic
 versioning definition of
@@ -116,42 +116,42 @@ precedence](https://semver.org/spec/v2.0.0.html#spec-item-11), this release
 will correctly be interpreted as the successor to the previous release
 candidates.
 
-Active development of this project continues. The `simfiny-core-lib/message_queue` module now has
+Active development of this project continues. The `backend-core-lib/message_queue` module now has
 backwards incompatible changes to its API that need to be released and the
-`simfiny-core-lib/database/postgres` module has a minor bug fix that needs to be released. The
+`backend-core-lib/database/postgres` module has a minor bug fix that needs to be released. The
 following release is made:
 
-* `simfiny-core-lib`: `v1.0.1`
-* `simfiny-core-lib/database/mongo`: `v1.0.1`
-* `simfiny-core-lib/message_queue`: `v0.15.0`
-* `simfiny-core-lib/database/postgres`: `v1.0.1`
-* `simfiny-core-lib/sdk/database/mongo`: `v1.0.1`
-* `simfiny-core-lib/sdk/message_queue`: `v0.15.0`
+* `backend-core-lib`: `v1.0.1`
+* `backend-core-lib/database/mongo`: `v1.0.1`
+* `backend-core-lib/message_queue`: `v0.15.0`
+* `backend-core-lib/database/postgres`: `v1.0.1`
+* `backend-core-lib/sdk/database/mongo`: `v1.0.1`
+* `backend-core-lib/sdk/message_queue`: `v0.15.0`
 
 Notice that, again, all stable module versions are incremented in unison and
-the `simfiny-core-lib/sdk/message_queue` package, which depends on the `simfiny-core-lib/message_queue` package, also
-bumped its version. This bump of the `simfiny-core-lib/sdk/message_queue` package makes sense
+the `backend-core-lib/sdk/message_queue` package, which depends on the `backend-core-lib/message_queue` package, also
+bumped its version. This bump of the `backend-core-lib/sdk/message_queue` package makes sense
 given their coupling, though it is not explicitly required by our versioning
 policy.
 
-As we progress, the `simfiny-core-lib/message_queue` and `simfiny-core-lib/sdk/message_queue` packages have reached a
-point where they should be evaluated for stability. The `simfiny-core-lib` module is
-reintegrated with the `simfiny-core-lib/message_queue` package and the following release is made:
+As we progress, the `backend-core-lib/message_queue` and `backend-core-lib/sdk/message_queue` packages have reached a
+point where they should be evaluated for stability. The `backend-core-lib` module is
+reintegrated with the `backend-core-lib/message_queue` package and the following release is made:
 
-* `simfiny-core-lib`: `v1.1.0-RC1`
-* `simfiny-core-lib/database/mongo`: `v1.1.0-RC1`
-* `simfiny-core-lib/message_queue`: `v1.1.0-RC1`
-* `simfiny-core-lib/database/postgres`: `v1.1.0-RC1`
-* `simfiny-core-lib/sdk/database/mongo`: `v1.1.0-RC1`
-* `simfiny-core-lib/sdk/message_queue`: `v1.1.0-RC1`
+* `backend-core-lib`: `v1.1.0-RC1`
+* `backend-core-lib/database/mongo`: `v1.1.0-RC1`
+* `backend-core-lib/message_queue`: `v1.1.0-RC1`
+* `backend-core-lib/database/postgres`: `v1.1.0-RC1`
+* `backend-core-lib/sdk/database/mongo`: `v1.1.0-RC1`
+* `backend-core-lib/sdk/message_queue`: `v1.1.0-RC1`
 
 All the modules are evaluated and determined to a viable stable release. They
 are then released as version `v1.1.0` (the minor version is incremented to
 indicate the addition of new signal).
 
-* `simfiny-core-lib`: `v1.1.0`
-* `simfiny-core-lib/database/mongo`: `v1.1.0`
-* `simfiny-core-lib/message_queue`: `v1.1.0`
-* `simfiny-core-lib/database/postgres`: `v1.1.0`
-* `simfiny-core-lib/sdk/database/mongo`: `v1.1.0`
-* `simfiny-core-lib/sdk/message_queue`: `v1.1.0`
+* `backend-core-lib`: `v1.1.0`
+* `backend-core-lib/database/mongo`: `v1.1.0`
+* `backend-core-lib/message_queue`: `v1.1.0`
+* `backend-core-lib/database/postgres`: `v1.1.0`
+* `backend-core-lib/sdk/database/mongo`: `v1.1.0`
+* `backend-core-lib/sdk/message_queue`: `v1.1.0`

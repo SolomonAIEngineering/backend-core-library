@@ -1,4 +1,4 @@
-# Copyright The OpenTelemetry Authors
+# Copyright The Solomon AI Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -182,7 +182,7 @@ misspell: | $(MISSPELL)
 .PHONY: license-check
 license-check:
 	@licRes=$$(for f in $$(find . -type f \( -iname '*.go' -o -iname '*.sh' \) ! -path '**/third_party/*' ! -path './.git/*' ) ; do \
-	           awk '/Copyright The OpenTelemetry Authors|generated|GENERATED/ && NR<=3 { found=1; next } END { if (!found) print FILENAME }' $$f; \
+	           awk '/Copyright The Solomon AI Authors|generated|GENERATED/ && NR<=3 { found=1; next } END { if (!found) print FILENAME }' $$f; \
 	   done); \
 	   if [ -n "$${licRes}" ]; then \
 	           echo "license header checking failed:"; echo "$${licRes}"; \

@@ -1,4 +1,4 @@
-module github.com/SimifiniiCTO/simfiny-core-lib/internal/tools
+module github.com/SimifiniiCTO/backend-core-lib/internal/tools
 
 go 1.20
 

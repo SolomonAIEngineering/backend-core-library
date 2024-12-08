@@ -6,13 +6,13 @@ This is a simple wrapper for the New Relic API that makes it easier to interact 
 You can install the New Relic wrapper using `go get`:
 
 ```bash
-go get -u github.com/SimifiniiCTO/simfiny-core-lib/instrumentation
+go get -u github.com/SimifiniiCTO/backend-core-lib/instrumentation
 ```
 
 ## Usage
 You need to to import the library
 ```go
-import github.com/SimifiniiCTO/simfiny-core-lib/instrumentation
+import github.com/SimifiniiCTO/backend-core-lib/instrumentation
 ```
 
 Then initialize the Instrumentation Client with the following configuration
@@ -46,8 +46,8 @@ for example, to initiate a trace
 
 If you want to contribute to this project, you can clone the repository and install the development dependencies:
 ```bash
-git clone github.com/SimifiniiCTO/simfiny-core-lib/instrumentation
-cd simfiny-core-lib/instrumentation
+git clone github.com/SimifiniiCTO/backend-core-lib/instrumentation
+cd backend-core-lib/instrumentation
 go mod tidy
 ```
 

@@ -11,10 +11,12 @@ import (
 )
 
 type (
-	// The `TaskPoolProcessor` struct is defining a new type that represents a worker pool processor. It
-	// contains fields for an `asynq.Client` instance, a Redis client instance, a logger instance, a task
-	// result time-to-live duration, and an `asynq.Server` instance representing the worker. This struct is
-	// used to manage the worker pool and process tasks asynchronously.
+	// TaskPoolProcessor manages asynchronous task processing using Redis-backed queues.
+	// It provides a robust worker pool implementation for handling distributed tasks
+	// with features like retry mechanisms, timeouts, and concurrent processing.
+	//
+	// The processor uses asynq for task queue management and requires Redis for
+	// persistence and message broker capabilities.
 	TaskPoolProcessor struct {
 		client            *asynq.Client
 		redisClient       *redis.Client
@@ -34,42 +36,60 @@ type (
 	// modifies its fields. This pattern is commonly used in Go to provide flexible and extensible APIs.
 	Option func(processor *TaskPoolProcessor)
 
-	// The `IJobPool` interface is defining a set of methods that must be implemented by any type that
-	// wants to act as a job pool for the `TaskPoolProcessor`. It specifies the behavior that the job pool
-	// must have, including creating new tasks, processing tasks, and enqueuing tasks for processing. By
-	// defining this interface, the `TaskPoolProcessor` can be decoupled from any specific implementation
-	// of the job pool and can work with any type that satisfies the `IJobPool` interface. This makes the
-	// `TaskPoolProcessor` more flexible and extensible.
+	// IJobPool defines the interface for task pool operations.
+	// Implementations must provide methods for creating, processing,
+	// and enqueueing tasks in a distributed task processing system.
 	IJobPool interface {
-		// `NewTask` is a method defined in the `IJobPool` interface. It takes a `taskId` string and a pointer
-		// to a `scheduledTime` of type `time.Time` as arguments and returns a pointer to an `asynq.Task`
-		// instance and an error. This method is used to create a new task with the given `taskId` and
-		// `scheduledTime` and return it as an `asynq.Task` instance. The `asynq.Task` instance can then be
-		// used to enqueue the task for processing by the worker pool.
+		// NewTask creates a new task with the specified parameters.
+		//
+		// Parameters:
+		//   - taskId: unique identifier for the task
+		//   - taskType: classification of the task (e.g., "email", "notification")
+		//   - scheduledTime: optional time when the task should be executed
+		//   - taskPayload: data required for task execution
+		//
+		// Returns:
+		//   - *asynq.Task: the created task object
+		//   - error: if task creation fails
 		NewTask(taskId, taskType string, scheduledTime *time.Time, taskPayload any) (*asynq.Task, error)
-		// The `ProcessTask` method is defined in the `IJobPool` interface and takes a context and an
-		// `asynq.Task` instance as arguments. It is used to process the given task asynchronously. The
-		// implementation of this method will vary depending on the specific task being processed, but it
-		// typically involves performing some kind of computation or I/O operation. The method returns an error
-		// if there was a problem processing the task.
+
+		// ProcessTask executes the given task using the provided executor.
+		//
+		// Parameters:
+		//   - ctx: context for task execution
+		//   - task: the task to be processed
+		//   - f: executor implementing the task logic
+		//   - payload: data needed for task execution
+		//
+		// Returns:
+		//   - error: if task processing fails
 		ProcessTask(ctx context.Context, task *asynq.Task, f Executor, payload any) error
-		// The `EnqueueTask` method is defined in the `IJobPool` interface and is used to enqueue a task for
-		// processing by the worker pool. It takes a context, a pointer to an `asynq.Task` instance, and a
-		// pointer to a `time.Duration` representing the delay before the task should be processed as
-		// arguments. The method returns a pointer to an `asynq.TaskInfo` instance and an error. The
-		// `asynq.TaskInfo` instance contains information about the enqueued task, such as its ID and its
-		// scheduled time. This method is typically used to add a new task to the worker pool for processing at
-		// a later time.
+
+		// EnqueueTask schedules a task for future execution.
+		//
+		// Parameters:
+		//   - ctx: context for task enqueuing
+		//   - task: the task to be scheduled
+		//   - delay: optional duration to delay task execution
+		//
+		// Returns:
+		//   - *asynq.TaskInfo: information about the enqueued task
+		//   - error: if task enqueuing fails
 		EnqueueTask(ctx context.Context, task *asynq.Task, delay *time.Duration) (*asynq.TaskInfo, error)
 	}
 
-	// The `Executor` interface is defining a new type that represents an executor for a task. It specifies
-	// a single method `Execute` that takes a context and a payload as arguments and returns an error. This
-	// interface is used to define the behavior of the function that will be executed when a task is
-	// processed by the worker pool. By defining this interface, the `TaskPoolProcessor` can be decoupled
-	// from any specific implementation of the task executor and can work with any type that satisfies the
-	// `Executor` interface. This makes the `TaskPoolProcessor` more flexible and extensible.
+	// Executor defines the interface for task execution logic.
+	// Implementations should contain the actual business logic
+	// for processing specific types of tasks.
 	Executor interface {
+		// Execute runs the task-specific logic with the given payload.
+		//
+		// Parameters:
+		//   - ctx: context for execution
+		//   - payload: task-specific data needed for execution
+		//
+		// Returns:
+		//   - error: if execution fails
 		Execute(ctx context.Context, payload any) error
 	}
 )
@@ -82,6 +102,15 @@ type (
 // development process and ensure that the code is correct.
 var _ IJobPool = (*TaskPoolProcessor)(nil)
 
+// NewTaskPoolProcessor creates a new TaskPoolProcessor with the provided options.
+// It initializes the Redis connection, worker pool, and task processing configuration.
+//
+// Parameters:
+//   - opts: variadic list of Option functions to configure the processor
+//
+// Returns:
+//   - *TaskPoolProcessor: configured processor instance
+//   - error: if initialization fails
 func NewTaskPoolProcessor(opts ...Option) (*TaskPoolProcessor, error) {
 	processor := &TaskPoolProcessor{}
 	for _, opt := range opts {

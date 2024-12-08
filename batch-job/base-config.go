@@ -6,17 +6,37 @@ import (
 	taskprocessor "github.com/SolomonAIEngineering/backend-core-library/task-processor"
 )
 
+// BaseConfig provides fundamental configuration options for batch jobs.
+// It defines common settings such as job scheduling intervals and retry policies.
 type BaseConfig struct {
-	Enabled    bool   `json:"enabled"`
-	Interval   string `json:"interval"` // e.g. "10s", "1m", "1h"
-	MaxRetries int64  `json:"maxRetries"`
+	// Enabled determines if the batch job is active and should be processed
+	Enabled bool `json:"enabled"`
+
+	// Interval specifies the frequency at which the job should run.
+	// Supports cron-like syntax and duration strings (e.g., "@daily", "10s", "1m", "1h")
+	Interval string `json:"interval"`
+
+	// MaxRetries defines the maximum number of retry attempts for failed jobs
+	MaxRetries int64 `json:"maxRetries"`
 }
 
+// ProcessingInterval converts the string interval configuration into a structured
+// taskprocessor.ProcessingInterval value.
+//
+// Example:
+//
+//	cfg := BaseConfig{Interval: "@daily"}
+//	interval := cfg.ProcessingInterval() // Returns taskprocessor.EveryDayAtMidnight
 func (c *BaseConfig) ProcessingInterval() taskprocessor.ProcessingInterval {
 	return toProcessingInterval(&c.Interval)
 }
 
-// Validate checks the correctness of the base config values.
+// Validate checks the correctness of the base configuration values.
+// Returns an error if any values are invalid.
+//
+// Validation rules:
+// - MaxRetries must be non-negative
+// - Interval must not be empty
 func (c *BaseConfig) Validate() error {
 	if c.MaxRetries < 0 {
 		return fmt.Errorf("maxRetries should be a non-negative integer")
@@ -30,7 +50,11 @@ func (c *BaseConfig) Validate() error {
 	return nil
 }
 
-// toProcessingInterval converts a string to a processing interval
+// toProcessingInterval converts a string interval specification to a ProcessingInterval value.
+// Supports various time formats including cron-style specifications and duration strings.
+//
+// Supported formats include:
+// - Cron-style:
 func toProcessingInterval(str *string) taskprocessor.ProcessingInterval {
 	if str == nil {
 		// handle nil input in some way, I'll return EveryDay as a default for this example

@@ -8,7 +8,7 @@ To use this wrapper, you need to have Go installed on your machine. You can inst
 
 Once you have Go installed, you can install the GetStream wrapper by running the following command:
 ```go
-go get github.com/SimifiniiCTO/simfiny-core-lib/third-party/getstream
+go get github.com/SimifiniiCTO/backend-core-lib/third-party/getstream
 ```
 
 ## Usage 
@@ -17,7 +17,7 @@ To use the GetStream wrapper, you need to first create a new client by providing
 Here's an example of how to create a new client:
 ```go
 import (
-    "github.com/SimifiniiCTO/simfiny-core-lib/third-party/getstream"
+    "github.com/SimifiniiCTO/backend-core-lib/third-party/getstream"
 )
 
 func main() {

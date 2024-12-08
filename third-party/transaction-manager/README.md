@@ -23,7 +23,7 @@ To use the library, you need to have go installed on your machine. You can insta
 
 Once you have Go installed, you can install the library by running the following command
 ```go
-go get github.com/SimifiniiCTO/simfiny-core-lib/third-party/transaction-manager
+go get github.com/SimifiniiCTO/backend-core-lib/third-party/transaction-manager
 ```
 
 ### Usage 
@@ -31,7 +31,7 @@ To use the library, you must first initialize the client
 
 ```go 
 import (
-    txm "github.com/SimifiniiCTO/simfiny-core-lib/third-party/transaction-manager"
+    txm "github.com/SimifiniiCTO/backend-core-lib/third-party/transaction-manager"
 )
 
 func main(){

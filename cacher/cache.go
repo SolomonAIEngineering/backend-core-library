@@ -10,14 +10,25 @@ import (
 	"go.uber.org/zap"
 )
 
+// Client implements a Redis cache client with connection pooling and instrumentation support.
+// It automatically handles connection management, key prefixing, and tracing of Redis operations.
 type Client struct {
-	logger                *zap.Logger
-	pool                  *redis.Pool
-	serviceName           string
-	instrumentationClient *instrumentation.Client
-	cacheTTLInSeconds     int
+	logger                *zap.Logger             // Logger for operational logging
+	pool                  *redis.Pool             // Connection pool for Redis
+	serviceName           string                  // Service name used for key prefixing
+	instrumentationClient *instrumentation.Client // Optional instrumentation for tracing
+	cacheTTLInSeconds     int                     // Default TTL for cache entries
 }
 
+// New creates a new Redis cache client with the provided options.
+// Example usage:
+//
+//	client, err := cacher.New(
+//	    cacher.WithLogger(logger),
+//	    cacher.WithRedisConn(pool),
+//	    cacher.WithServiceName("myservice"),
+//	    cacher.WithCacheTTLInSeconds(3600),
+//	)
 func New(opts ...Option) (*Client, error) {
 	c := &Client{}
 
@@ -32,7 +43,11 @@ func New(opts ...Option) (*Client, error) {
 	return c, nil
 }
 
-// WriteToCache writes a value to the cache
+// WriteToCache writes a value to the cache with the configured TTL.
+// The key will be automatically prefixed with the service name.
+// Example usage:
+//
+//	err := client.WriteToCache(ctx, "user:123", []byte(`{"name":"John"}`))
 func (s *Client) WriteToCache(ctx context.Context, key string, value []byte) error {
 	if s.instrumentationClient != nil {
 		txn := s.instrumentationClient.GetTraceFromContext(ctx)
@@ -57,7 +72,15 @@ func (s *Client) WriteToCache(ctx context.Context, key string, value []byte) err
 	return nil
 }
 
-// WriteManyToCache writes many values to the cache
+// WriteManyToCache writes multiple key-value pairs to the cache atomically.
+// This is more efficient than multiple individual writes for bulk operations.
+// Example usage:
+//
+//	pairs := map[string][]byte{
+//	    "user:123": []byte(`{"name":"John"}`),
+//	    "user:456": []byte(`{"name":"Jane"}`),
+//	}
+//	err := client.WriteManyToCache(ctx, pairs)
 func (s *Client) WriteManyToCache(ctx context.Context, pairs map[string][]byte) error {
 	if s.instrumentationClient != nil {
 		txn := s.instrumentationClient.GetTraceFromContext(ctx)
@@ -82,7 +105,17 @@ func (s *Client) WriteManyToCache(ctx context.Context, pairs map[string][]byte) 
 	return nil
 }
 
-// GetFromCache reads a value from the cache
+// GetFromCache retrieves a value from the cache by key.
+// Returns nil and an error if the key doesn't exist.
+// Example usage:
+//
+//	data, err := client.GetFromCache(ctx, "user:123")
+//	if err != nil {
+//	    if err == redis.ErrNil {
+//	        // Handle cache miss
+//	    }
+//	    return err
+//	}
 func (s *Client) GetFromCache(ctx context.Context, key string) ([]byte, error) {
 	if s.instrumentationClient != nil {
 		txn := s.instrumentationClient.GetTraceFromContext(ctx)
@@ -106,8 +139,13 @@ func (s *Client) GetFromCache(ctx context.Context, key string) ([]byte, error) {
 	return value, nil
 }
 
-// GetManyFromCache retrieves multiple values from the cache based on the provided keys.
-// It returns a slice of byte slices representing the retrieved values, or an error if any occurred.
+// GetManyFromCache retrieves multiple values from the cache in a single operation.
+// If any key is missing, it returns an error. For partial success/failure handling,
+// use individual GetFromCache calls.
+// Example usage:
+//
+//	keys := []string{"user:123", "user:456"}
+//	values, err := client.GetManyFromCache(ctx, keys)
 func (s *Client) GetManyFromCache(ctx context.Context, keys []string) ([][]byte, error) {
 	isNilByteSlice := func(b []byte) bool {
 		return b == nil
@@ -143,7 +181,11 @@ func (s *Client) GetManyFromCache(ctx context.Context, keys []string) ([][]byte,
 	return values, nil
 }
 
-// DeleteFromCache deletes a value from the cache
+// DeleteFromCache removes a value from the cache.
+// It's safe to delete non-existent keys.
+// Example usage:
+//
+//	err := client.DeleteFromCache(ctx, "user:123")
 func (s *Client) DeleteFromCache(ctx context.Context, key string) error {
 	if s.instrumentationClient != nil {
 		txn := s.instrumentationClient.GetTraceFromContext(ctx)
@@ -166,9 +208,16 @@ func (s *Client) DeleteFromCache(ctx context.Context, key string) error {
 	return nil
 }
 
-// WriteAnyToCache writes the given value to the cache using the specified key.
-// The value is first marshaled into JSON format before being written to the cache.
-// If an error occurs during marshaling or writing to the cache, it is returned.
+// WriteAnyToCache marshals any JSON-serializable value and writes it to the cache.
+// This is a convenience wrapper around WriteToCache with JSON marshaling.
+// Example usage:
+//
+//	type User struct {
+//	    Name string `json:"name"`
+//	    Age  int    `json:"age"`
+//	}
+//	user := User{Name: "John", Age: 30}
+//	err := client.WriteAnyToCache(ctx, "user:123", user)
 func (s *Client) WriteAnyToCache(ctx context.Context, key string, value interface{}) error {
 	if s.instrumentationClient != nil {
 		txn := s.instrumentationClient.GetTraceFromContext(ctx)
@@ -188,7 +237,12 @@ func (s *Client) WriteAnyToCache(ctx context.Context, key string, value interfac
 	return nil
 }
 
-// WriteToCacheWithTTL writes a value to the cache with a defined ttl in seconds
+// WriteToCacheWithTTL writes a value to the cache with a custom TTL.
+// If timeToLiveInSeconds is <= 0, defaults to 60 seconds.
+// Example usage:
+//
+//	// Cache for 5 minutes
+//	err := client.WriteToCacheWithTTL(ctx, "temp:123", data, 300)
 func (s *Client) WriteToCacheWithTTL(ctx context.Context, key string, value []byte, timeToLiveInSeconds int) error {
 	if timeToLiveInSeconds <= 0 {
 		timeToLiveInSeconds = 60

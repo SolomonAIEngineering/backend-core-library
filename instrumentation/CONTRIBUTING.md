@@ -1,11 +1,11 @@
-# Contributing to simfiny-core-lib
+# Contributing to backend-core-lib
 
 ## Development
 
 You can view and edit the source code by cloning this repository:
 
 ```sh
-git clone https://github.com/SimifiniiCTO/simfiny-core-lib/instrumentation
+git clone https://github.com/SimifiniiCTO/backend-core-lib/instrumentation
 ```
 
 Run `make test` to run the tests instead of `go test`.
@@ -32,20 +32,20 @@ To create a new PR, fork the project in GitHub and clone the upstream
 repo:
 
 ```sh
-go get -u github.com/SimifiniiCTO/simfiny-core-lib/instrumentation
+go get -u github.com/SimifiniiCTO/backend-core-lib/instrumentation
 ```
 
 (This may print some warning about "build constraints exclude all Go
 files", just ignore it.)
 
-This will put the project in `${GOPATH}/src/simfiny-core-lib/instrumentation`. You
+This will put the project in `${GOPATH}/src/backend-core-lib/instrumentation`. You
 can alternatively use `git` directly with:
 
 ```sh
-git clone https://github.com/SimifiniiCTO/simfiny-core-lib/instrumentation
+git clone https://github.com/SimifiniiCTO/backend-core-lib/instrumentation
 ```
 
-(Note that `git clone` is *not* using the `simfiny-core-lib/instrumentation` name -
+(Note that `git clone` is *not* using the `backend-core-lib/instrumentation` name -
 that name is a kind of a redirector to GitHub that `go get` can
 understand, but `git` does not.)
 
@@ -226,8 +226,8 @@ how the user can extend the configuration.
 It is important that internal `config` are not shared across package boundaries.
 Meaning a `config` from one package should not be directly used by another. The
 one exception is the API packages.  The configs from the base API, eg.
-`simfiny-core-lib/instrumentation/trace.TracerConfig` and
-`simfiny-core-lib/instrumentation/metric.InstrumentConfig`, are intended to be consumed
+`backend-core-lib/instrumentation/trace.TracerConfig` and
+`backend-core-lib/instrumentation/metric.InstrumentConfig`, are intended to be consumed
 by the SDK therefore it is expected that these are exported.
 
 When a config is exported we want to maintain forward and backward

@@ -6,14 +6,14 @@ This is a wrapper library for the Algolia Search API, designed to make it easier
 You can install the Algolia Search wrapper for Go using go get:
 
 ```bash
-go get -u github.com/SimifiniiCTO/simfiny-core-lib/third-party/algoliasearch
+go get -u github.com/SimifiniiCTO/backend-core-lib/third-party/algoliasearch
 ```
 
 ## Usage
 To use the Algolia Search wrapper, you first need to create a client instance:
 
 ```go
-import "github.com/SimifiniiCTO/simfiny-core-lib/third-party/algoliasearch"
+import "github.com/SimifiniiCTO/backend-core-lib/third-party/algoliasearch"
 
 opts := []algoliasearch.Options{
     algoliasearch.WithAlgoliaSearchApplicationID("salfhgjdahgjlsdhg"),

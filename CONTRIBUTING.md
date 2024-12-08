@@ -1,11 +1,11 @@
-# Contributing to simfiny-core-lib
+# Contributing to backend-core-lib
 
 ## Development
 
 You can view and edit the source code by cloning this repository:
 
 ```sh
-git clone https://github.com/SimifiniiCTO/simfiny-core-lib
+git clone https://github.com/SimifiniiCTO/backend-core-lib
 ```
 
 Run `make test` to run the tests instead of `go test`.

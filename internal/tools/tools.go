@@ -1,4 +1,4 @@
-// Copyright The OpenTelemetry Authors
+// Copyright The Solomon AI Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 //go:build tools
 // +build tools
 
-package tools // import "github.com/SimifiniiCTO/simfiny-core-lib/internal/tools"
+package tools // import "github.com/SimifiniiCTO/backend-core-lib/internal/tools"
 
 import (
 	_ "github.com/client9/misspell/cmd/misspell"

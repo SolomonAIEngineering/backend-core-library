@@ -5,14 +5,14 @@ This is a Redis client wrapper for Golang that provides a simplified interface t
 ## Installation
 To use this library install using the `go get commant`
 ```go
-go get -u github.com/SimifiniiCTO/simfiny-core-lib/database/redis
+go get -u github.com/SimifiniiCTO/backend-core-lib/database/redis
 ```
 
 ## Usage 
 To use this library first import 
 ```go
-import github.com/SimifiniiCTO/simfiny-core-lib/database/redis
-import github.com/SimifiniiCTO/simfiny-core-lib/signals
+import github.com/SimifiniiCTO/backend-core-lib/database/redis
+import github.com/SimifiniiCTO/backend-core-lib/signals
 ```
 
 ## Create The Client 

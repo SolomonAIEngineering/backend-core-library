@@ -9,6 +9,7 @@ import (
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"
 	"google.golang.org/grpc"
+	"google.golang.org/protobuf/types/known/durationpb"
 )
 
 // Instantiates a new worker
@@ -59,7 +60,7 @@ func NewNamespaceClient(opts *client.Options) (client.NamespaceClient, error) {
 	if err := c.Register(ctx, &workflowservice.RegisterNamespaceRequest{
 		Namespace:                        opts.Namespace,
 		OwnerEmail:                       "admin@simfinii.com",
-		WorkflowExecutionRetentionPeriod: &workflowRetentionPeriod,
+		WorkflowExecutionRetentionPeriod: durationpb.New(workflowRetentionPeriod),
 	}); err != nil {
 		// ignore the error if the namespace already exists
 		if _, ok := err.(*serviceerror.NamespaceAlreadyExists); !ok {

@@ -12,7 +12,7 @@ This library provides utilities to help integrate with a Go application. You may
 ## Installation
 
 ```bash
-go get github.com/SimifiniiCTO/simfiny-core-lib/third-party/authn
+go get github.com/SimifiniiCTO/backend-core-lib/third-party/authn
 ```
 
 ## Example
@@ -22,7 +22,7 @@ package main
 
 import (
   "fmt"
-  sdk "github.com/SimifiniiCTO/simfiny-core-lib/third-party/authn"
+  sdk "github.com/SimifiniiCTO/backend-core-lib/third-party/authn"
 )
 
 var jwt1 = `<your test jwt here>`
