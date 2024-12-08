@@ -1,9 +1,7 @@
 <div align="center">
-    <h1 align="center">Solomon AI Cache Library</h1>
+    <h1 align="center">Cache Library</h1>
     <h3 align="center">Efficient and Type-safe Redis-based Caching for Go Applications</h3>
 </div>
-
-<div align="center">
   
 [![Go Report Card](https://goreportcard.com/badge/github.com/SolomonAIEngineering/backend-core-library)](https://goreportcard.com/report/github.com/SolomonAIEngineering/backend-core-library)
 [![GoDoc](https://godoc.org/github.com/SolomonAIEngineering/backend-core-library?status.svg)](https://godoc.org/github.com/SolomonAIEngineering/backend-core-library)
