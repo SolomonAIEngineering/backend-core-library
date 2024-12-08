@@ -20,7 +20,7 @@ fmt: ## Format workspace
 # Tidy Go modules
 tidy: ## Tidy go modules
 	@echo "[tidy] Tidying go modules..."
-	@rm -f go.sum; go mod tidy -compat=1.21
+	@rm -f go.sum; go mod tidy -compat=1.23
 
 # Vet Go code
 vet: ## Vet go code
